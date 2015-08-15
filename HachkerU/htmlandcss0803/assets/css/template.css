@@ -1,0 +1,46 @@
+body {
+
+}
+
+nav dt.firstLevel{
+  float:left;
+  padding: 0.5em 1em;
+  border-top-right-radius: 25%;
+  border-top-left-radius: 25%;
+  border-color: #000000;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #F69220;
+}
+nav dt.active{
+  background-color: #26AAE1;
+}
+
+nav a, nav a:active, nav a:hover {
+  text-decoration: none;
+  color: #000;
+}
+.clear{
+  clear: both;
+}
+#maincontent{
+  width:80%;
+  float:right;
+  min-height: 35em;
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+}
+#contentNav{
+  width:19.9%;
+  float:left;
+  border-top: 1px solid black;
+}
+footer{
+  border-top: 1px solid black;
+}
+label{
+  display: block;
+}
+input {
+  margin :0 0 0 1em;
+}

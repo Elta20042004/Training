@@ -1,0 +1,59 @@
+<html> 
+<head>
+<script type="text/javascript">
+function F()
+{
+	<!-- var a = '((5*(150-10))*(73+(30+5)))'; -->  //
+	var a = '(1+9999999)';
+	var stack = new Array ();
+	index=0;
+	var x;
+	var b;
+	var y;
+	for (var i=0; i<a.length; i++)
+	{	
+		if (a[i]==')')
+		{
+			
+			x=parseInt(stack[index-1],10);
+			index--;
+			b=stack[index-1];
+			index--;
+			y=parseInt(stack[index-1],10);
+			index--;
+			switch (b){
+				case '-':
+					stack[index-1]=(y-x).toString();				
+					break
+				case '+':
+					stack[index-1]=(y+x).toString();				
+					break
+				case '*':
+					stack[index-1]=(y*x).toString();				
+					break
+				case '/':
+					stack[index-1]=(y/x).toString();				
+					break
+			}
+		}
+		else
+		{
+			stack[index]=a[i];	
+			if ((index>0)&&(((stack[index-1][0]>='0')&&(stack[index-1][0]<='9'))&&((a[i]>=0)&&(a[i]<=9))))
+			{
+				stack[index-1]=stack[index-1]+a[i];
+				index--;
+			}
+			
+			index++;
+		}
+	}		
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+stack[0];		
+		
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

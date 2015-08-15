@@ -1,0 +1,23 @@
+<html> 
+<head>
+<script type="text/javascript">
+function F()
+{
+var A = new Array (8,2,6,4,3);
+var B = new Array (8,6,3,2);
+var SumA = 0;
+for (var i=0; i<B.length; i++)
+{
+	SumA = SumA + A[i];					
+	SumA = SumA - B[i];	
+	
+}	
+	SumA = SumA + A[A.length-1];
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+(SumA);			
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

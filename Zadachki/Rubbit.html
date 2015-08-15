@@ -1,0 +1,51 @@
+<html> 
+<head>
+<script type="text/javascript">
+
+var rez = new Array();
+			
+function sumTo(x) 
+{	
+	if (x==0)
+	{
+		return 1;
+	}
+	
+	if(x<0)
+	{
+		return 0;
+	}	
+	
+	if (rez[x]>=0)
+	{
+		return rez[x];
+	}
+	
+	
+	rez[x]=sumTo(x-1)+sumTo(x-2)+sumTo(x-3);
+	return rez[x];
+	
+}
+
+function F()
+{
+	
+	var x = 5000;	
+	
+	for (var i=0; i<=x; i++)
+	{
+		rez[i]=-1;
+	}
+		
+	var res = sumTo(x);
+		
+		document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+res; 
+	
+	
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

@@ -1,0 +1,80 @@
+<html> 
+<head>
+<script type="text/javascript">
+function F()
+{
+	var a = 'AdnBndAndBdaBn';
+	var anagram = 'dAn';
+	var anagramContainer = new Array();	
+
+	
+	var key;
+	
+	for (var i=0; i<anagram.length; i++)
+	{	    
+		key = anagram[i];  
+		if (anagramContainer[key]==null) // pod bukvoj 'a' - pusto
+		{
+			anagramContainer[key] =0
+		}
+	    anagramContainer[key]=anagramContainer[key]+1 // null + 1 = null; 0 +1 = 1
+	}
+	// 'a' = 2, 'd' = 1,'n' = 1
+	for(key in anagramContainer)
+	{
+		document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML+" "+(key+'='+anagramContainer[key]);
+	}	
+	
+	var currentContainer = new Array();
+	var key2;
+	for (var i=0; i<a.length; i++)
+	{			
+		key2=a[i];
+		if (currentContainer[key2]==null) 	
+		{
+			currentContainer[key2] = 0;
+		}
+		currentContainer[key2]=currentContainer[key2]+1;
+		
+		if (i>=anagram.length)
+		{
+			key2=a[i-anagram.length];
+			currentContainer[key2]=currentContainer[key2]-1;
+		}
+		if (i+1>=anagram.length)
+		{
+			var equals=true;
+			for (key2 in anagramContainer)
+			{
+				if (anagramContainer[key2]!=currentContainer[key2])
+				{
+					equals = false;
+				}				
+			}
+
+			if (equals)
+			{
+				var g = a.substring(i-anagram.length+1,i+1)
+				document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML+"         --== "+g+" ==--";
+			}
+		
+		}
+		
+	}
+		
+		
+		// 1. dobavit' novyj simvol V
+		// 2. udalit' [i-4] simvol
+		// 3. sravnit' anagramContainer s currentContainer
+	
+	for(key2 in currentContainer)
+	{
+		document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML+" "+(key2+'='+currentContainer[key2]);
+	}	
+	
+}
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

@@ -1,0 +1,24 @@
+<html> 
+<head>
+<script type="text/javascript">
+function F()
+{
+var A = new Array (1,1,2,4,4);
+var sum = 5;
+
+for (var i=0; i<A.length; i++)
+{
+	for (var j=i+1; j<A.length; j++)
+	{
+		if (A[i]+A[j]==sum)
+		{
+			document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML+" "+(i+":"+j]);
+		}
+	}
+}
+}
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

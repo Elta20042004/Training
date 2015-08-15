@@ -1,0 +1,36 @@
+<html> 
+<head>
+<script type="text/javascript">
+function F()
+{
+	var a = ')';
+	var stack = new Array ();
+	index=0;
+	for (var i=0; i<a.length; i++)
+	{	
+		if ((a[i]=='(')||(a[i]=='[')||(a[i]=='{'))
+		{
+			stack[index]=a[i];
+			index++;
+			
+		}
+		else if (((a[i]==')')&&(stack[index-1]=='('))||
+			((a[i]==']')&&(stack[index-1]=='['))||
+			((a[i]=='}')&&(stack[index-1]=='{')))
+		{
+			index--;	
+		}
+		else
+		{
+			document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+i+" false";
+			return;
+		}
+	}		
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+"true";		
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

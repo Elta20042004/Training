@@ -1,0 +1,56 @@
+<html> 
+<head>
+<script type="text/javascript">
+function convertStringToArray (x)
+{
+	var aa = new Array();
+	x = x.split("").reverse().join("");
+	for (var i=x.length-1; i>=0; i--)
+	{
+		aa[i]=parseInt(x[i],10);				
+	}
+	return aa;
+}
+
+function convertArrayToString (x)
+{	
+	var aa = "";
+	aa = x.join("");
+	aa = aa.split("").reverse().join("");
+	return aa;
+}
+
+function F()
+{
+	var a = "123456789";		
+	var b = 3;
+	var x = 0;
+	var k;
+	var aa = convertStringToArray(a);	
+	var rezult = new Array ();			
+	
+	
+	for (var j=0; j<aa.length; j++)
+	{		
+		k=aa[j]*b+x;
+		rezult[j] = k%10;		
+		x = Math.floor(k/10);			
+	}
+	
+	if (x>0)
+	{
+		rezult[rezult.length]=x;
+	}
+	
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+convertArrayToString (rezult);
+		
+			
+	
+	
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

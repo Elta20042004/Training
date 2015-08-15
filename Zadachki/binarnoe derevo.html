@@ -1,0 +1,131 @@
+<html> 
+<head>
+<script type="text/javascript">
+function isBinarySearchTree(node){
+	
+	
+	if ((node.left!=null)&&(node.left.value<node.value))
+	{
+		if (isBinarySearchTree (node.left)==false)
+		{
+			return false;
+		}
+	}
+	
+	if ((node.right!=null)&&(node.right.value>=node.value))
+	{
+		if (isBinarySearchTree (node.right)==false);
+		{
+			return false;
+		}
+	}
+		
+	return true;
+}
+
+function F()
+{		
+	var node_correct = {
+		value: 5,
+		left: {
+			value: 3,
+			left: {
+				value: 2,
+				left: null,
+				right: null
+			},
+			right: {
+				value: 4,
+				left: null,
+				right: null
+			}
+		},
+		right: {
+			value: 7,
+			left: {
+					value: 6,
+					left: {
+						value: 5,
+						left: null,
+						right: null
+					},
+					right: {
+						value: 6,
+						left: null,
+						right: null
+					}
+				},
+			right: {
+				value: 10,
+				left: {
+					value: 8,
+					left: null,
+					right: null
+				},
+				right: {
+					value: 15,
+					left: null,
+					right: null
+				}
+			}
+		}
+	};
+	var node_incorrect = {
+		value: 5,
+		left: {
+			value: 3,
+			left: {
+				value: 2,
+				left: null,
+				right: null
+			},
+			right: {
+				value: 4,
+				left: null,
+				right: null
+			}
+		},
+		right: {
+			value: 7,
+			left: {
+					value: 6,
+					left: {
+						value: 5,
+						left: null,
+						right: null
+					},
+					right: {
+						value: 6,
+						left: null,
+						right: null
+					}
+				},
+			right: {
+				value: 10,
+				left: {
+					value: 8,
+					left: null,
+					right: null
+				},
+				right: {
+					value: 2,
+					left: null,
+					right: null
+				}
+			}
+		}
+	};
+	
+	
+	var mustBeTrue = isBinarySearchTree(node_correct);
+	var mustBeFalse = isBinarySearchTree(node_incorrect);
+	
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+mustBeTrue;
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+mustBeFalse;
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

@@ -1,0 +1,137 @@
+<html> 
+<head>
+<script type="text/javascript">
+
+function convertStringToArray (x)
+{
+	var aa = new Array();
+	x = x.split("").reverse().join("");
+	for (var i=x.length-1; i>=0; i--)
+	{
+		aa[i]=parseInt(x[i],10);				
+	}
+	return aa;
+}
+
+function convertArrayToString (x)
+{	
+	var aa = "";
+	aa = x.join("");
+	aa = aa.split("").reverse().join("");
+	return aa;
+}
+
+function shiftLeft (a, x)
+{
+	var rezult = new Array ();	
+	rezult.length = x;
+	for (var j=0; j<rezult.length; j++)
+	{
+		rezult[j]=0;
+	}	
+	
+	for (var i=0; i<=a.length; i++)
+	{
+		rezult.push(a[i]); 
+	}
+	
+	return rezult;
+}
+
+function umnozhenie (a, b)
+{
+	var rezult = new Array ();	
+	var k;
+	var x = 0;
+	for (var j=0; j<a.length; j++)
+	{		
+		k=a[j]*b+x;
+		rezult[j] = k%10;		
+		x = Math.floor(k/10);			
+	}
+	
+	if (x>0)
+	{
+		rezult[rezult.length]=x;
+	}
+	
+	return rezult;
+}
+
+function s(m, n)
+{
+	var x=0;
+	var y;
+	var temp = new Array();
+	var length;
+	
+	for (var i=0; i<=m.length-1; i++)
+	{
+		x=m[i]+x;
+		if (n.length>i)
+		{
+			x+=n[i];
+		}
+		temp[i]=x%10;
+		x=Math.floor(x/10);
+	}
+
+	temp[temp.length];
+	temp = convertArrayToString (temp);
+	return temp;
+	
+}
+
+function F()
+{
+	
+	var a = "4568786";		
+	var b = "56" ;
+	a = convertStringToArray (a);
+	b = convertStringToArray (b);
+	var shotchik = b.length;
+	var temp;
+	var con = new Array();
+	var v = new Array();
+	var rezult = new Array();
+	
+	
+	for (var i=0; i<b.length; i++)
+	{		
+		temp = umnozhenie (a,b[i]);
+		v[i] = convertArrayToString (temp);
+	}
+	
+	if (shotchik>1)
+	{		
+		
+		for (var j=v.length-1; j>=1; j--)
+		{
+			con = convertStringToArray (v[j]);
+			var rez = shiftLeft (con, shotchik-1)
+			rez = convertArrayToString (rez)
+			v[j]=rez;
+			shotchik=shotchik-1;
+		}
+	}
+	
+	rezult = convertStringToArray (v[v.length-1]);	
+	
+	for (var i=v.length-2; i>=0; i--)
+	{
+		var t = convertStringToArray (v[i]);					
+		rezult = convertStringToArray (s(rezult, t));
+	}
+	
+	
+	rezult = convertArrayToString (rezult);
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+rezult; 
+	
+	
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

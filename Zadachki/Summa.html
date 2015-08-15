@@ -1,0 +1,68 @@
+<html> 
+<head>
+<script type="text/javascript">
+function convertStringToArray (x)
+{
+	var aa = new Array();
+	x = x.split("").reverse().join("");
+	for (var i=x.length-1; i>=0; i--)
+	{
+		aa[i]=parseInt(x[i],10);				
+	}
+	return aa;
+}
+
+function convertArrayToString (x)
+{	
+	var aa = "";
+	aa = x.join("");
+	aa = aa.split("").reverse().join("");
+	return aa;
+}
+
+
+function s(m, n)
+{
+	var x=0;
+	var y;
+	var temp = new Array();
+	var length;
+	
+	for (var i=0; i<=m.length-1; i++)
+	{
+		x=m[i]+x;
+		if (n.length>i)
+		{
+			x+=n[i];
+		}
+		temp[i]=x%10;
+		x=Math.floor(x/10);
+	}
+
+	temp[temp.length];
+	temp = convertArrayToString (temp);
+	return temp;
+	
+}
+
+function F()
+{
+	var a = "410280";		
+	var b = "4734";
+	var aa = convertStringToArray (a);
+	var bb = convertStringToArray (b);
+	
+	var rez = s(aa, bb)
+	
+
+				
+	
+		document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+rez;
+		
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

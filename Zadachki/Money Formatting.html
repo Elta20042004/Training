@@ -1,0 +1,57 @@
+<html> 
+<head>
+<script type="text/javascript">
+function F()
+{
+	var a = 2310000.159897;		
+	var ab = new Array();
+	var end = "";
+	
+	
+	var b = Math.floor(a);
+	var c = ((a - b).toFixed(2))*100;
+	var ch=0;
+	
+	var i=0;
+	var j=0;
+	
+	while (b>0)
+	{
+		ab[i]=b%10;
+		b=Math.floor(b/10);
+		i++;
+	}
+	
+	for (var i=0; i<=ab.length-1; i++)
+	{
+		
+		if(ch<=2)
+		{
+			<!-- document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+ab[i]; -->
+			end+=ab[i];
+			j++;
+			ch++;
+		}
+		else
+		{
+			i=i-1;
+			ch=0;
+			end+=" ";
+			j++;
+			<!-- document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+"_"; -->
+		}
+	
+	}
+	
+		
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+end.split("").reverse().join("");	
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+".";	
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+c;		
+		
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

@@ -1,0 +1,38 @@
+<html> 
+<head>
+<script type="text/javascript">
+function F()
+{
+	var a = ("You are just an old antidisestablishmentarian");	
+	var ch = 0;
+	var max=0;
+	var index=0;
+	var end;
+
+	for (var i=0; i<a.length; i++)
+	{	
+		
+		if (a[i]!=' ') 
+		{
+			ch =ch+1;
+		}
+		if ((a[i]==' ')||(i==a.length-1))
+		{
+			if (ch>max)
+			{
+				max=ch;
+				index=i-max;
+								
+			}
+			ch=0;								
+		}								
+				
+	}
+			document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+a.substring(index,index+max);;
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

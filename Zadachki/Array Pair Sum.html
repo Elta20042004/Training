@@ -1,0 +1,25 @@
+<html> 
+<head>
+<script type="text/javascript">
+function F()
+{
+var A = new Array (3,4,5,6,7);
+for (var i=0; i<A.length; i++)
+{	
+	for (var j=i+1; j<A.length; j++)
+	{	
+		if (A[i]+A[j]==10)
+		{							
+			document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+A[i]+"+"+A[j];						
+		}					
+						
+	}		
+}		
+			
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

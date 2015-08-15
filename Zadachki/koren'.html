@@ -1,0 +1,266 @@
+<html> 
+<head>
+<script type="text/javascript">
+
+function convertStringToArray (x)
+{
+	var aa = new Array();
+	x = x.split("").reverse().join("");
+	for (var i=x.length-1; i>=0; i--)
+	{
+		aa[i]=parseInt(x[i],10);				
+	}
+	return aa;
+}
+
+function convertArrayToString (x)
+{	
+	var aa = "";
+	aa = x.join("");
+	aa = aa.split("").reverse().join("");
+	return aa;
+}
+
+function shiftLeft (a, x)
+{
+	var rezult = new Array ();	
+	rezult.length = x;
+	for (var j=0; j<rezult.length; j++)
+	{
+		rezult[j]=0;
+	}	
+	
+	for (var i=0; i<a.length; i++)
+	{
+		rezult.push(a[i]); 
+	}
+	
+	return rezult;
+}
+
+function umnozhenieBigChisel (a, b)
+{
+	var shotchik = b.length;
+	var temp;
+	var con = new Array();
+	var v = new Array();
+	var rezult = new Array();
+	
+	
+	for (var i=0; i<b.length; i++)
+	{		
+		temp = umnozhenie (a,b[i]);
+		v[i] = temp;
+	}
+	
+	if (shotchik>1)
+	{		
+		
+		for (var j=v.length-1; j>=1; j--)
+		{
+			con = v[j];
+			var rez = shiftLeft (con, shotchik-1)
+			v[j]=rez;
+			shotchik=shotchik-1;
+		}
+	}
+	
+	rezult = v[v.length-1];	
+	
+	for (var i=v.length-2; i>=0; i--)
+	{
+		var t = v[i];					
+		rezult = s(rezult, t);
+	}
+
+	return  rezult;
+}
+
+function s(m, n)
+{
+	var x=0;
+	var y;
+	var temp = new Array();
+	var length;
+	
+	
+	if (sravnenie (m, n)==-1)
+	{
+		temp = n;
+		n = m;
+		m = temp;
+	}
+	
+	temp = new Array();
+	for (var i=0; i<=m.length-1; i++)
+	{
+		x=m[i]+x;
+		if (n.length>i)
+		{
+			x+=n[i];
+		}
+		temp[i]=x%10;
+		x=Math.floor(x/10);
+	}
+	
+	if (x==1)
+	{
+		temp[temp.length] = x;
+	}
+
+	return temp;
+	
+}
+
+function shiftLeft (a, x)
+{
+	var rezult = new Array ();	
+	rezult.length = x;
+	for (var j=0; j<rezult.length; j++)
+	{
+		rezult[j]=0;
+	}	
+	
+	for (var i=0; i<a.length; i++)
+	{
+		rezult.push(a[i]); 
+	}
+	
+	return rezult;
+}
+
+
+function sravnenie (a, b) 
+{
+	var rez;
+	if (a.length > b.length)
+	{
+		return 1;
+	}
+	else if  (a.length < b.length)
+	{
+		return -1;
+	}
+	
+	for (var i=a.length-1; i>=0; i--)
+	{
+		if (a[i]>b[i])
+		{
+			return 1;
+		}
+		else if (a[i]<b[i])
+		{
+			return -1;
+		}
+	}
+	
+	
+	return 0;
+}
+
+function umnozhenie (a, b)
+{
+	var rezult = new Array ();	
+	var k;
+	var x = 0;
+	for (var j=0; j<a.length; j++)
+	{		
+		k=a[j]*b+x;
+		rezult[j] = k%10;		
+		x = Math.floor(k/10);			
+	}
+	
+	if (x>0)
+	{
+		rezult[rezult.length]=x;
+	}
+	
+	return rezult;
+}
+
+function delenieNaDva (aa)
+{		
+	var rezult = new Array ();	
+	var ostatok=0;
+	
+	
+	for (var i=aa.length-1; i>=0; i--)
+	{
+		var chislo = ostatok*10+aa[i];
+		var k = Math.floor (chislo/2);
+		ostatok = chislo%2;
+		
+		if (!((i==aa.length-1)&&(i>0)&&(k==0)))
+		{
+			rezult.unshift (k);
+		}
+	}
+	return rezult;
+}
+
+function koren (a)
+{
+	var min = new Array();
+	min.push(1);
+	var max = a;
+	var test;
+	var kvadrat;
+	while (test!=0)
+	{
+		var midle = delenieNaDva (s(min, max));	
+	
+			kvadrat = umnozhenieBigChisel (midle, midle);
+
+		test = sravnenie (kvadrat, a);
+		
+		if (test==1)
+		{
+			var t = sravnenie (midle, max);
+			if (t==0)
+			{
+				return min;
+			}
+			max = midle;
+		}
+		
+		else if (test == -1)
+		{
+			var t = sravnenie (midle, min);
+			if (t==0)
+			{
+				return max;
+			}
+			min = midle;	
+		}	
+		else
+		{
+			return midle
+		}
+	}
+	return midle;
+}
+
+
+function F()
+{
+	
+	var a = "4";		
+	aa = convertStringToArray (a);
+	
+	var result = convertArrayToString(koren(aa)); 
+	
+	
+	
+	
+	
+	
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+result; 
+	
+	
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

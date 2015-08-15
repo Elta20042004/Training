@@ -1,0 +1,77 @@
+<html> 
+<head>
+<script type="text/javascript">
+function F()
+{
+	var a = new Array (1,9,5,9,9);	
+	var middle;
+	var rezul;
+	var palindrome = new Array();
+	var x;		
+	var y=1;
+	middle = Math.floor(a.length/2)-1+a.length%2;
+	rezult = a.length%2;
+	
+
+	if (a[0]==9)
+	{
+		document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+y;
+		for (var i=0; i<=a.length-1; i++)
+		{
+			a[i]=0;			
+		}
+			a[a.length-1]=1;
+			document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+a;
+	return
+	}
+	
+	
+	while (a[middle]==9)
+	{
+		a[middle]=0;
+		middle--;	
+	}
+	
+	a[middle]=a[middle]+1;
+	
+	x=a[Math.floor(a.length/2)-1+a.length%2];
+
+		
+	
+	
+	if (rezult==0)
+	{
+		for (var i=0; i<=Math.floor(a.length/2)-1+a.length%2; i++)
+		{
+			document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+a[i];
+		}		
+		for (var i=Math.floor(a.length/2)-1+a.length%2; i>=0; i--)
+		{
+			document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+a[i];
+		}			
+	}
+		
+	else
+	{	
+		for (var i=0; i<=Math.floor(a.length/2)-2+a.length%2; i++)
+		{
+			document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+a[i];
+		}	
+		
+		document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+x;
+		
+		for (var i=Math.floor(a.length/2)-2+a.length%2; i>=0; i--)
+		{
+			document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+a[i];
+		}	
+	}
+	
+	
+		
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

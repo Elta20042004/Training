@@ -1,0 +1,38 @@
+<html> 
+<head>
+<script type="text/javascript">
+function F()
+{
+
+var A = new Array (8,2,6,4,3,9,5,1,7);
+var Max=0;
+var temp;
+for (var i=0; i<=A.length-1; i++)
+{
+	for (var j=i; j<=A.length-1; j++)
+	{
+		if (A[j]>A[i])
+		{
+			Max=A[j];
+			temp=A[i];
+			A[i]=Max;
+			A[j]=temp;
+				
+		}
+			
+	}
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+(A[i]);
+}	
+
+	
+
+
+	
+		
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

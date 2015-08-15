@@ -1,0 +1,61 @@
+<html> 
+<head>
+<script type="text/javascript">
+function convertStringToArray (x)
+{
+	var aa = new Array();
+	x = x.split("").reverse().join("");
+	for (var i=x.length-1; i>=0; i--)
+	{
+		aa[i]=parseInt(x[i],10);				
+	}
+	return aa;
+}
+
+function convertArrayToString (x)
+{	
+	var aa = "";
+	aa = x.join("");
+	aa = aa.split("").reverse().join("");
+	return aa;
+}
+
+function F()
+{
+	var a = "750";		
+	var b = 2;
+	var aa = convertStringToArray(a);	
+	var temp = new Array ();			
+	var rezult = new Array ();	
+	var ostatok=0;
+	
+	for (var i=aa.length-1; i>=-1; i--)
+	{
+		
+		temp[i] = (aa[i]*10)/2;
+		rezult[i]=Math.floor(temp[i]/10);
+		ostatok = aa[i]-(rezult[i]*2);
+		if (ostatok==1)
+		{
+			aa[i-1]=aa[i-1]+10;
+		}
+		if ((i==0)&&(ostatok==1))
+		{
+			rezult[i]=temp[i]/10;					
+		}
+		
+	}
+	<!-- rezult = convertArrayToString (rezult); -->
+	
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+rezult;
+		
+			
+	
+	
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

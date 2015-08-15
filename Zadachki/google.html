@@ -1,0 +1,58 @@
+<html> 
+<head>
+<script type="text/javascript">
+
+function F()
+{
+	var a = 111;		
+	var p = "_";
+	var z = "*";
+	var j = 0;
+	
+	var k = new Array ();	
+	var rec = new Array ();
+	
+	rec.length = a;		
+	
+	for (var i=0; i<rec.length; i++)
+	{
+		rec[i]="*";		
+	}				
+		
+	while (rec.length!=(a+1)/2)
+	{				
+		rec.pop(rec[rec.length-1]);
+		rec[j]="_";
+		j++;	
+	}
+	
+	
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+rec;		
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+('<br>');
+	while (rec.length!=a)
+	{				
+		rec.push("*");
+		rec[j-1]="*";
+		j--;	
+	
+		document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+rec;		
+		document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+('<br>');
+	}
+	
+	while (rec.length!=(a+1)/2)
+	{				
+		rec.pop(rec[rec.length-1]);
+		rec[j]="_";
+		j++;
+		
+		document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+rec;		
+		document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+('<br>');
+	}
+	
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

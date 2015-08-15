@@ -1,0 +1,21 @@
+<html> 
+<head>
+<script type="text/javascript">
+function F()
+{
+	var a = 'AABBCCD';	
+	for (var i=0; i<a.length; i++)
+	{	
+		if ((a[i]!=a[i-1])&&(a[i]!=a[i+1]))
+		{
+			document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+(a[i]);
+		}
+	}
+			
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

@@ -1,0 +1,54 @@
+<html> 
+<head>
+<script type="text/javascript">
+
+var a = new Array (4,10,2,6,2,8,4,1);				
+function sumTo(x,i) 
+{	
+	var rez = new Array ();
+	
+	if (x==0)
+	{
+		return rez;
+	}
+	
+	if(i<0)
+	{
+		return null;
+	}	
+	
+	if (x-a[i]>=0)
+	{
+		rez = sumTo (x-a[i],i-1);
+			if (rez!=null)
+			{
+				rez.push(a[i]);
+				return rez;
+			}
+		rez=sumTo(x,i-1);	
+		return rez;
+	}
+	
+	
+		
+	
+	
+}
+
+function F()
+{
+	var rez = new Array ();
+	var x = 11;		
+	
+	var rez = sumTo(x,a.length-1);
+		
+		document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+rez; 
+	
+	
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

@@ -1,0 +1,56 @@
+<html> 
+<head>
+<script type="text/javascript">
+function convertStringToArray (x)
+{
+	var aa = new Array();
+	x = x.split("").reverse().join("");
+	for (var i=x.length-1; i>=0; i--)
+	{
+		aa[i]=parseInt(x[i],10);				
+	}
+	return aa;
+}
+
+function F()
+{
+	var a = "852";		
+	var b = "35";
+	var aa = convertStringToArray (a);
+	var bb = convertStringToArray (b);
+	var y;
+	var x=0;
+	var temp = new Array();
+	var length;
+	
+
+	for (var i=0; i<=aa.length-1; i++)
+	{			
+		y=aa[i]-x;
+		if (i<bb.length)
+		{
+			y=y-bb[i];
+		}
+		if (y<0)
+		{
+			y=y+10;			
+			temp[i]=y;
+			x=1;
+		}
+		else
+		{
+			temp[i]=y;
+			x=0;
+		}
+		
+	}
+
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+temp;
+		
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>

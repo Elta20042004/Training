@@ -1,0 +1,77 @@
+<html> 
+<head>
+<script type="text/javascript">
+
+function convertStringToArray (x)
+{
+	var aa = new Array();
+	x = x.split("").reverse().join("");
+	for (var i=x.length-1; i>=0; i--)
+	{
+		aa[i]=parseInt(x[i],10);				
+	}
+	return aa;
+}
+
+function convertArrayToString (x)
+{	
+	var aa = "";
+	aa = x.join("");
+	aa = aa.split("").reverse().join("");
+	return aa;
+}
+
+function shiftLeft (a, x)
+{
+	var rezult = new Array ();	
+	rezult.length = x;
+	for (var j=0; j<rezult.length; j++)
+	{
+		rezult[j]=0;
+	}	
+	
+	for (var i=0; i<=a.length; i++)
+	{
+		rezult.push(a[i]); 
+	}
+	
+	return rezult;
+}
+
+function shiftLeft (a, x)
+{
+	var rezult = new Array ();	
+	rezult.length = x;
+	for (var j=0; j<rezult.length; j++)
+	{
+		rezult[j]=0;
+	}	
+	
+	for (var i=0; i<=a.length; i++)
+	{
+		rezult.push(a[i]); 
+	}
+	
+	return rezult;
+}
+
+
+function F()
+{
+	
+	var a = "789";		
+	var x = 3 ;
+
+	a = convertStringToArray (a);
+	var rez = shiftLeft (a, x)
+	rez = convertArrayToString (rez)
+	document.getElementById("txt").innerHTML=document.getElementById("txt").innerHTML +" "+rez; 
+	
+	
+}
+
+</script> 
+</head> 
+<body onload="F()"> 
+<p id="txt"> </p> </body> 
+</html>
