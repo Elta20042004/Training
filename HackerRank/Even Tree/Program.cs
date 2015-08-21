@@ -11,31 +11,29 @@ namespace Even_Tree
         public static int[,] Matrix;
         private static int start;
         private static int n;
-        private static int counter = 1;
-        private static int temp = 0;
-        private static int k = 0;
+        private static int counter = 0;
 
-        public static void Recursiya(int start)
+        public static int Recursiya(int start)
         {
-            if (k == n)
-            {
-                return;
-            }
+            int i = 1;
+            int temp = 1;         
 
-            for (int i = 1; i <= n; i++)
+            while (i <= n)
             {
-                k = i;
                 if (Matrix[start, i] == 1)
                 {
-                    temp++;
-                    start = i;
                     Matrix[start, i] = -1;   //ya tut byla
-                    Recursiya(start);
+                    temp = temp + Recursiya(i);
                 }
+                i++;
             }
 
+            if (temp % 2 == 0)
+            {
+                counter++;
+            }
 
-
+            return temp;
         }
 
 
@@ -55,8 +53,8 @@ namespace Even_Tree
                 Matrix[y, x] = 1;
             }
             start = 1;
-            Recursiya(start);
-
+            int k = Recursiya(start);
+            Console.WriteLine(counter);
         }
     }
 }
