@@ -15,7 +15,7 @@ namespace The_Grid_Search
         static int m;
         static int n;
 
-        static bool Proverka(int iT, int jT)
+        static bool Test(int iT, int jT)
         {
             int a = iT;
             int b = jT;
@@ -27,8 +27,8 @@ namespace The_Grid_Search
                     if (matrixBig[i,j]!=matrixSmall[i-a,j-b])
                     {
                         i = iT + mSmall;
+                        j = jT + nSmall;
                             rez = false;
-                        break;
                     }
                 }
             }
@@ -38,27 +38,27 @@ namespace The_Grid_Search
         {
             int iI = mSmall-1;
             int jJ = nSmall-1;
-            string otvet = "NO";
+            string rezult = "NO";
             for (int i=0; i<m; i++)
             {
                 for (int j=0; j<n;j++)
                 {
-                    if ((matrixBig[i,j]==matrixSmall[0,0])
-                        &&((i+iI)<m)
-                        &&((j+jJ)<n)
-                        &&(matrixBig[i+iI,j+jJ]==matrixSmall[iI,jJ]))
+                    if (matrixBig[i,j]==matrixSmall[0,0]
+                        && i+iI<m
+                        && j+jJ<n
+                        && matrixBig[i+iI,j+jJ]==matrixSmall[iI,jJ])
                     {
-                       bool rez = Proverka(i, j);
+                       bool rez = Test(i, j);
                         if (rez==true)
                         {
-                            otvet = "YES";
+                            rezult = "YES";
                             i = m;
-                            break;
+                            j = n;
                         }
                     }
                 }
             }
-            Console.WriteLine(otvet);
+            Console.WriteLine(rezult);
         }
         static void Main(string[] args)
         {
@@ -72,14 +72,12 @@ namespace The_Grid_Search
 
                 for (int i=0; i<m; i++)
                 {
-                    string stroka = Console.ReadLine();
+                    string str1 = Console.ReadLine();
                     
                     for(int j=0;j<n;j++)
                     {
-                        matrixBig[i, j] = stroka[j]-'0';
-                    }
-                    
-                }
+                        matrixBig[i, j] = str1[j]-'0';
+                    }                                   }
 
                 string[] strSmall = Console.ReadLine().Split(' ');
                 mSmall = int.Parse(strSmall[0]);
