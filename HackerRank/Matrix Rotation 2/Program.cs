@@ -13,22 +13,22 @@ namespace Matrix_Rotation
         private static int sdvig;
         private static int n;
         private static int m;
-        static void ZapolnenieMatrixRez( List<int> odinKrug, int a)
+        static void FillMatrixWithNewResults(List<int> newPerimeter, int a)
         {
             int i = a;
             int j = a;  //0,0  1,1   2,2..........         
             int pi = 0; // begunok po list
-            while (j < (n - a))  // j<kollichestva stolbcov
+            while (j < n - a)  // j<kollichestva stolbcov
             {
-                matrixRez[i, j] = odinKrug[pi];
+                matrixRez[i, j] = newPerimeter[pi];
                 j++;
                 pi++;
             }
             i = i + 1;
             j = j - 1;
-            while (i < (m - a))
+            while (i < m - a)
             {
-                matrixRez[i, j] = odinKrug[pi];
+                matrixRez[i, j] = newPerimeter[pi];
                 i++;
                 pi++;
             }
@@ -36,7 +36,7 @@ namespace Matrix_Rotation
             j = j - 1;
             while (j >= a)
             {
-                matrixRez[i, j] = odinKrug[pi];
+                matrixRez[i, j] = newPerimeter[pi];
                 j--;
                 pi++;
             }
@@ -44,18 +44,18 @@ namespace Matrix_Rotation
             j = j + 1;
             while (i > a)
             {
-                matrixRez[i, j] = odinKrug[pi];
+                matrixRez[i, j] = newPerimeter[pi];
                 i--;
                 pi++;
             }
         }
-        static void SdvigLista(List<int> odinKrug, int a)
+        static void ListShift(List<int> odinKrug, int shift)
         {
-            if(odinKrug.Count==0)
+            if (odinKrug.Count == 0)
                 return;
             List<int> copyOpinKrug = new List<int>();
             int k = 0;  // index s pravel'nogo mesta s uchotom shaga
-            k = sdvig%odinKrug.Count;
+            k = sdvig % odinKrug.Count;
 
             if (k > 0)
             {
@@ -74,22 +74,22 @@ namespace Matrix_Rotation
             }
 
 
-            ZapolnenieMatrixRez(copyOpinKrug, a);
+            FillMatrixWithNewResults(copyOpinKrug, shift);
         }
 
-        static void Krug(int a)
+        static void GetPerimeterAtStart(int a)
         {
             List<int> odinKrug = new List<int>();
             int i = a;
             int j = a;  //0,0  1,1   2,2..........         
-            while (j < (n - a))  // j<kollichestva stolbcov
+            while (j < n - a)  // j<kollichestva stolbcov
             {
                 odinKrug.Add(matrix[i, j]);
                 j++;
             }
             i = i + 1;
             j = j - 1;
-            while (i < (m - a))
+            while (i < m - a)
             {
                 odinKrug.Add(matrix[i, j]);
                 i++;
@@ -109,7 +109,7 @@ namespace Matrix_Rotation
                 i--;
             }
 
-            SdvigLista(odinKrug, a);
+            ListShift(odinKrug, a);
         }
         static void Main(string[] args)
         {
@@ -119,17 +119,17 @@ namespace Matrix_Rotation
             sdvig = int.Parse(str[2]);
             matrix = new int[m, n];
             matrixRez = new int[m, n];
-            int kollichestvoKrugov;
+            int perimeterCount;
             if (m < n)
             {
-                kollichestvoKrugov = m/2;
+                perimeterCount = m / 2;
             }
             else
             {
-                kollichestvoKrugov = n / 2;
+                perimeterCount = n / 2;
             }
-           
-                      
+
+
             for (int i = 0; i < m; i++)
             {
                 string[] r = Console.ReadLine().Split(' ');
@@ -140,12 +140,12 @@ namespace Matrix_Rotation
             }
             int a = 0;
 
-            while (kollichestvoKrugov != 0)
+            while (perimeterCount != 0)
             {
 
-                Krug(a);
+                GetPerimeterAtStart(a);
                 a++;
-                kollichestvoKrugov--;
+                perimeterCount--;
             }
 
             for (int i = 0; i < m; i++)
