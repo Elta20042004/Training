@@ -152,10 +152,9 @@ namespace linq_Aviad
                               + "\r\n" + "Q – quit the program");
 
 
-            string test = Console.ReadLine();
+            string test = Console.ReadLine().ToLower();
             switch (test)
             {
-                case "A":
                 case "a":
                     {
                         Console.WriteLine("Enter the details of a new employee through a gap:"
@@ -171,7 +170,6 @@ namespace linq_Aviad
                         my.Add(e);
                         break;
                     }
-                case "D":
                 case "d":
                     {
                         Console.WriteLine("Enter id employees who want to remove.");
@@ -179,15 +177,14 @@ namespace linq_Aviad
                         my.Delete(id);
                         break;
                     }
-                case "S":
                 case "s":
                     {
                         Console.WriteLine("Enter id employee whose data you want to see.");
-                        int id = int.Parse(Console.ReadLine());
+                        //int id = int.Parse(Console.ReadLine());
+                        int id = 5;
                         my.Show(id);
                         break;
                     }
-                case "U":
                 case "u":
                     {
                         Console.WriteLine("Enter the details of a employee through a gap:"
@@ -203,13 +200,11 @@ namespace linq_Aviad
                         my.Update(myEmployeeId, e);
                         break;
                     }
-                case "SA":
                 case "sa":
                     {
                         my.ShowAll();
                         break;
                     }
-                case "SEK":
                 case "sek":
                     {
                         Console.WriteLine("Enter id employee whose skells you want to see.");
@@ -217,7 +212,6 @@ namespace linq_Aviad
                         my.ShoeEmployeeSkills(id);
                         break;
                     }
-                case "Search":
                 case "search":
                     {
                         Console.WriteLine("Enter id, name and family name employee through a gap.");
@@ -227,7 +221,6 @@ namespace linq_Aviad
                         Console.WriteLine(soughtFor.ToString());
                         break;
                     }
-                case "Q":
                 case "q":
                     {
                         my.Quit();

@@ -69,3 +69,4 @@
 3 22 .NET beleet_parus_odinokij
 4 26 ADO.NET beleet_parus_odinokij
 5 19 WCF beleet_parus_odinokij
+S
