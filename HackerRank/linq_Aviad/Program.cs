@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,10 @@ namespace linq_Aviad
 {
     public class Skills  //navyki
     {
-        public int SkillId { get; set; }
-        public int EmployeeId { get; set; }
-        public string SkillName { get; set; }
-        public string BriefDescription { get; set; }
+        private int SkillId { get; set; }
+        public int EmployeeId { get; private set; }
+        public string SkillName { get; private set; }
+        private string BriefDescription { get; set; }
 
         public Skills(int employeeId, int skillId, string skillName, string briefDescription)
         {
@@ -20,7 +21,6 @@ namespace linq_Aviad
             SkillName = skillName;
             BriefDescription = briefDescription;
         }
-
     }
 
     public class Employee  //sotrudnik
@@ -39,32 +39,30 @@ namespace linq_Aviad
             Alias = alias;
             Email = email;
         }
+
+        public override string ToString()
+        {
+            return String.Format("Id: {0}, Name:{1}, Family:{2}, Alias:{3}, email:{4}", EmployeeId, LastName, FirstName, Alias, Email);
+        }
     }
 
-    public class MyClass
+    public class EmployeeRepository
     {
         public List<Employee> people;
         public List<Skills> skills;
-        public MyClass()
+
+        public EmployeeRepository()
         {
             people = new List<Employee>();
             skills = new List<Skills>();
         }
 
-
-
-
-
-
- 
-
-
-        public void A(Employee e) // A – Add new Employee
+        public void Add(Employee e) // A – Add new Employee
         {
             people.Add(e);
         }
 
-        public void D(int id)    //  D – Delete Employee
+        public void Delete(int id)    //  D – Delete Employee
         {
             var e = people
                 .First(t => t.EmployeeId == id);
@@ -72,21 +70,20 @@ namespace linq_Aviad
             people.Remove(e);
         }
 
-        public void S(int id) // S – Show employee
+        public void Show(int id) // S – Show employee
         {
             var k = people
                 .First(t => t.EmployeeId == id);
-            Console.WriteLine("{0}, {1}, {2}, {3}, {4}", k.EmployeeId, k.LastName, k.FirstName, k.Alias, k.Email);
+            Console.WriteLine(k.ToString());
         }
 
-        public Employee U(int id) // U – Update Employee Details
+        public void Update(int id, Employee e) // U – Update Employee Details
         {
-            var k = people
-                .First(t => t.EmployeeId == id);
-            return k;
+            Delete(id);
+            Add(e);
         }
 
-        public void SA() //v. SA – Show all employees
+        public void ShowAll() //v. SA – Show all employees
         {
             foreach (var i in people)
             {
@@ -94,7 +91,7 @@ namespace linq_Aviad
             }
         }
 
-        public void SEK(int id) // SEK – Show employee skills
+        public void ShoeEmployeeSkills(int id) // SEK – Show employee skills
         {
             var k = skills
                 .Where(t => t.EmployeeId == id)
@@ -105,17 +102,16 @@ namespace linq_Aviad
             }
         }
         // Search – search for employee based on employeeId, name, lastName
-        public void Search(int id, string lname, string fname)
+        public Employee Search(int id, string lname, string fname)
         {
             var k = people
                 .First(t => t.EmployeeId == id
                             && t.FirstName == fname
                             && t.LastName == lname);
-
-            Console.WriteLine("{0}, {1}, {2}, {3}, {4}", k.EmployeeId, k.LastName, k.FirstName, k.Alias, k.Email);
+            return k;
         }
 
-        public void Q() //viii. Q – quit the program
+        public void Quit() //viii. Q – quit the program
         {
             Environment.Exit(0);
         }
@@ -125,9 +121,8 @@ namespace linq_Aviad
     {
         static void Main(string[] args)
         {
-            //List<Employee> people = new List<Employee>();
-            //List<Skills> skills = new List<Skills>();
-            MyClass my = new MyClass();
+
+            EmployeeRepository my = new EmployeeRepository();
             string[] k = Console.ReadLine().Split(' ');
             int m = int.Parse(k[0]);
             int n = int.Parse(k[1]);
@@ -147,20 +142,103 @@ namespace linq_Aviad
                 my.skills.Add(oneSkill);
             }
 
-            // Test
-            my.A(new Employee(541, "Alex", "Cherny", "Tank", "tut.by"));
-            my.D(2);
-            my.S(3);
-
-            Employee chel = my.U(4);
-            chel.Email = "jjjjjjjjjjj@com";
-
-            //my.SA();
-            my.SEK(5);
-            my.Search(10 ,"Christop", "Clifford");
-            my.Q();
+            Console.WriteLine("A – Add new Employee"
+                              + "\r\n" + "D – Delete Employee"
+                              + "\r\n" + "S – Show employee"
+                              + "\r\n" + "U – Update Employee Details"
+                              + "\r\n" + "SA – Show all employees"
+                              + "\r\n" + "SEK – Show employee skills"
+                              + "\r\n" + "Search – search for employee based on employeeId, name, lastName"
+                              + "\r\n" + "Q – quit the program");
 
 
+            string test = Console.ReadLine();
+            switch (test)
+            {
+                case "A":
+                case "a":
+                    {
+                        Console.WriteLine("Enter the details of a new employee through a gap:"
+                         + "\r\n" + "1. id;"
+                         + "\r\n" + "2. name;"
+                         + "\r\n" + "3. family name;"
+                         + "\r\n" + "4. alias;"
+                         + "\r\n" + "5. email."
+                         + "\r\n" + "For example: 32735 Elena Cherny Programmer Elta20042004@gmail.com");
+                        string[] myEmployee = Console.ReadLine().Split(' ');
+                        int myEmployeeId = int.Parse(myEmployee[0]);
+                        Employee e = new Employee(myEmployeeId, myEmployee[1], myEmployee[2], myEmployee[3], myEmployee[4]);
+                        my.Add(e);
+                        break;
+                    }
+                case "D":
+                case "d":
+                    {
+                        Console.WriteLine("Enter id employees who want to remove.");
+                        int id = int.Parse(Console.ReadLine());
+                        my.Delete(id);
+                        break;
+                    }
+                case "S":
+                case "s":
+                    {
+                        Console.WriteLine("Enter id employee whose data you want to see.");
+                        int id = int.Parse(Console.ReadLine());
+                        my.Show(id);
+                        break;
+                    }
+                case "U":
+                case "u":
+                    {
+                        Console.WriteLine("Enter the details of a employee through a gap:"
+                                          + "\r\n" + "1. id;"
+                                          + "\r\n" + "2. name;"
+                                          + "\r\n" + "3. family name;"
+                                          + "\r\n" + "4. alias;"
+                                          + "\r\n" + "5. email."
+                                          + "\r\n" + "For example: 32735 Elena Cherny Programmer Elta20042004@gmail.com");
+                        string[] myEmployee = Console.ReadLine().Split(' ');
+                        int myEmployeeId = int.Parse(myEmployee[0]);
+                        Employee e = new Employee(myEmployeeId, myEmployee[1], myEmployee[2], myEmployee[3], myEmployee[4]);
+                        my.Update(myEmployeeId, e);
+                        break;
+                    }
+                case "SA":
+                case "sa":
+                    {
+                        my.ShowAll();
+                        break;
+                    }
+                case "SEK":
+                case "sek":
+                    {
+                        Console.WriteLine("Enter id employee whose skells you want to see.");
+                        int id = int.Parse(Console.ReadLine());
+                        my.ShoeEmployeeSkills(id);
+                        break;
+                    }
+                case "Search":
+                case "search":
+                    {
+                        Console.WriteLine("Enter id, name and family name employee through a gap.");
+                        string[] myEmployee = Console.ReadLine().Split(' ');
+                        int id = int.Parse(myEmployee[0]);
+                        Employee soughtFor = my.Search(id, myEmployee[1], myEmployee[2]);
+                        Console.WriteLine(soughtFor.ToString());
+                        break;
+                    }
+                case "Q":
+                case "q":
+                    {
+                        my.Quit();
+                        break;
+                    }
+                default:
+                {
+                    Console.WriteLine("Error...");
+                    break;                   
+                }
+            }
         }
     }
 }
