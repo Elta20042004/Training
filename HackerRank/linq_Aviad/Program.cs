@@ -22,7 +22,6 @@ namespace linq_Aviad
             BriefDescription = briefDescription;
         }
     }
-
     public class Employee  //sotrudnik
     {
         public int EmployeeId { get; set; }
@@ -121,6 +120,7 @@ namespace linq_Aviad
     {
         static void Main(string[] args)
         {
+         
 
             EmployeeRepository my = new EmployeeRepository();
             string[] k = Console.ReadLine().Split(' ');
