@@ -52,7 +52,7 @@ namespace Dictinary
             int index = GetIndex(key);
 
             var node = dic[index].First;
-            while (!node.Value.Key.Equals(key))      //!!!!!!!!!!!!!
+            while (!node.Value.Key.Equals(key))     
             {
                 var next = node.Next;
                 node = next;
@@ -66,7 +66,7 @@ namespace Dictinary
             int index = GetIndex(key);
 
             var node = dic[index].First;
-            while (!node.Value.Key.Equals(key))         //!!!!!!!!!!!!!
+            while (!node.Value.Key.Equals(key))       
             {
                 var next = node.Next;
                 node = next;
