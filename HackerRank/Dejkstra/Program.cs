@@ -17,22 +17,22 @@ namespace Dejkstra
         public static void Dejkstra()
         {
             int counter = n;
-            int index = start;
+            int vershina = start;
             while (counter != 1)
             {
                 //begu po stolbcu k v Matrix
                 for (int i = 1; i <= n; i++)
                 {
                     if (!TrueFalse[i] 
-                        && Matrix[index, i] != 0
-                        && Konveer[index] + Matrix[index, i] < Konveer[i])
+                        && Matrix[vershina, i] != 0
+                        && Konveer[vershina] + Matrix[vershina, i] < Konveer[i])
                     {
-                        Konveer[i] = Konveer[index] + Matrix[index, i];
+                        Konveer[i] = Konveer[vershina] + Matrix[vershina, i];
                     }
                 }
 
                 int maxValue = int.MaxValue;
-                index = 0;
+                vershina = 0;
                 for (int i = 1; i <= Konveer.Length - 1; i++)
                 {
                     if ((Konveer[i] > 0) && (!TrueFalse[i]))
@@ -40,11 +40,11 @@ namespace Dejkstra
                         if (Konveer[i] < maxValue)
                         {
                             maxValue = Konveer[i];
-                            index = i;
+                            vershina = i;
                         }
                     }
                 }
-                TrueFalse[index] = true;
+                TrueFalse[vershina] = true;
                 counter--;
             }
             //vyvod na ekran

@@ -6,88 +6,122 @@ using System.Threading.Tasks;
 
 namespace LincedList
 {
-    public class LincLictNode
+    public class LinkedListNode<T>
     {
-        public LincLictNode Next;
-        public int Data;
+        public LinkedListNode<T> Next;
+        public T Data;
     }
 
-    class LincedList
+    class LinkedList<T> where T :class
     {
-        private LincLictNode _root;
-        private LincLictNode temp;
-        public void Add(int data)
+        private LinkedListNode<T> _head;
+        private LinkedListNode<T> _tail;  //hvost
+        public void Add(T data)
         {
-            if (_root == null)
+            if (_head == null)
             {
-                _root = new LincLictNode();
-                _root.Data = data;
-                temp = _root;
+                _head = new LinkedListNode<T>();
+                _head.Data = data;
+                _tail = _head;
             }
             else
             {
-                LincLictNode t = new LincLictNode();
+                LinkedListNode<T> t = new LinkedListNode<T>();
                 t.Data = data;
-                temp.Next = t;
-                temp = t;
+                _tail.Next = t;
+                _tail = t;
             }
-
         }
 
-        public void Remove(int data)
+        public void Remove(T data)
         {
-            LincLictNode predydushij = null;
-            //if (_root.Data==data)
-            //{
-            //    predydushij = _root.Next;
-            //    _root.Next = null;
-            //}        
-            LincLictNode k = _root;
+            LinkedListNode<T> previous = null;
+
+            LinkedListNode<T> k = _head;
             while (k.Data != data)
             {
-                predydushij = k;
+                previous = k;
                 k = k.Next;
             }
 
-            predydushij.Next = k.Next;
+            previous.Next = k.Next;
         }
 
-        public void AddAfter(int data)
-        {
-
-        }
 
         public void Reverse()
         {
-            LincLictNode predydushij = null;
-            LincLictNode nastoyashij = _root.Next;
-            LincLictNode sleduyushij = _root.Next.Next;
+            LinkedListNode<T> previous = _head;                  //predydushij
+            LinkedListNode<T> real = _head.Next;                 //nastoyashij
+            LinkedListNode<T> next = _head.Next.Next;            //sleduyushij
 
-            _root.Next = null;
-            nastoyashij.Next = predydushij;
-            while (_root.Next!=null)
+            previous.Next = null;
+            real.Next = previous;
+
+            while (next != null)
             {
-                predydushij = nastoyashij;
-                nastoyashij = sleduyushij;
-                sleduyushij = nastoyashij.Next;
-                nastoyashij.Next = predydushij;
+                previous = real;
+                real = next;
+                next = next.Next;
+                real.Next = previous;
             }
         }
     }
 
     class Program
     {
+
+        static bool HasLoop<T>(LinkedListNode<T> head)
+        {
+            var first = head;
+            bool found = true;
+
+            if (first.Next == null)
+            {
+                return false;
+            }
+
+            var second = head.Next.Next;
+
+
+            while (first != second && second != null && second.Next != null)
+            {
+                first = first.Next;
+                second = second.Next.Next;
+            }
+
+            if (second == null || second.Next == null)
+            {
+                found = false;
+            }
+            return found;
+        }
+
         static void Main(string[] args)
         {
-            LincedList test = new LincedList();
-            test.Add(4);
-            test.Add(5);
-            test.Add(6);
-            test.Add(7);
-            test.Remove(6);
-            //test.AddAfter(6);
-            test.Add(9);
-            test.Reverse();
+            //LinkedList test = new LinkedList();
+            //test.Add(4);
+            //test.Add(5);
+            //test.Add(6);
+            //test.Add(7);
+            //test.Remove(6);
+            //test.Add(8);
+            //test.Add(9);
+            //test.Reverse();
+
+            LinkedListNode<int> one = new LinkedListNode<int>();
+            one.Data = 1;
+            //LinkedListNode two = new LinkedListNode();
+            //two.Data = 2;
+            //LinkedListNode three = new LinkedListNode();
+            //three.Data = 3;
+            //LinkedListNode four = new LinkedListNode();
+            //four.Data = 4;
+            //LinkedListNode five = new LinkedListNode();
+
+            one.Next = one;
+
+            bool found = HasLoop(one);
+
         }
     }
 }

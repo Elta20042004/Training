@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Dictinary_Lait")]
+[assembly: AssemblyTitle("Fifo_Filo_Ciklic")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Dictinary_Lait")]
+[assembly: AssemblyProduct("Fifo_Filo_Ciklic")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e23361c5-1b03-4ea3-8633-5251953c488d")]
+[assembly: Guid("4f586818-9117-41dc-8cd4-09354df3d840")]
 
 // Version information for an assembly consists of the following four values:
 //

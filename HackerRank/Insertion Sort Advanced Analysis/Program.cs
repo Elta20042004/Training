@@ -376,7 +376,7 @@ namespace Insertion_Sort_Advanced_Analysis
                 int[] num = str.Select(ch => int.Parse(ch.ToString())).ToArray();
                 sof = new int[num.Length];
                 rez = 0;
-                //Sort(num);
+                Sort(num);
                 //Raschoska(num);
                 //ChotnoNechotno(num);
                 //Shejker(num,0,num.Length-1);
@@ -386,8 +386,8 @@ namespace Insertion_Sort_Advanced_Analysis
                 //int[] second = new int[num.Length];
                 //int[] k = merge_sort(num, second, 0, num.Length - 1);
                 //End(num);
-                Formula(num);
-                Console.WriteLine(rez);
+                //Formula(num);
+                //Console.WriteLine(rez);
             }
         }
     }

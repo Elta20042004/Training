@@ -1,18 +1,17 @@
-﻿using System.CodeDom.Compiler;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LRU;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LRU
+namespace Dictionary.Test
 {
-    public class Program
+    [TestClass]
+    public class LruTest
     {
-        public static List<Person> MyPeople;
-
-        static void Main(string[] args)
+        [TestMethod]
+        public void TestMethod1()
         {
-            MyPeople = new List<Person>();  // moya bol'shaya pamyat'
+            var MyPeople = new List<Person>();  // moya bol'shaya pamyat'
             MyPeople.Add(new Person(321, "Alex"));
             MyPeople.Add(new Person(324, "Avi"));
             MyPeople.Add(new Person(345, "Fillip"));

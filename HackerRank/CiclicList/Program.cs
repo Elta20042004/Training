@@ -9,14 +9,14 @@ namespace CiclicList
 {
     public class CiklicList
     {
-        public  int[] k;
-        public  int i;
-        public  int j;
-        public  int counter;
+        public int[] k;
+        public int i;
+        public int j;
+        public int counter;
 
         public CiklicList()
         {
-            k=new int[4];
+            k = new int[4];
         }
 
         public void Remove()
@@ -31,7 +31,7 @@ namespace CiclicList
 
         public void Add(int m)
         {
-           
+
             if (counter < k.Length)
             {
                 k[i] = m;
@@ -55,14 +55,19 @@ namespace CiclicList
         }
     }
     class Program
-    {        
+    {
         static void Main(string[] args)
         {
-            CiklicList test = new CiklicList();  
-            
-            int m = 5;
-            test.Add(m);
+            CiklicList test = new CiklicList();
+
+
+            test.Add(1);
+            test.Add(2);
+            test.Add(3);
+            test.Add(4);
             test.Remove();
+            test.Add(5);
+
         }
     }
 }

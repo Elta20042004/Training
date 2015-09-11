@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Dictinary
-{  
-    public class Dictinary<TKey, TValue>
+{
+    public class MyDictionary<TKey, TValue>
     {
-        public LinkedList<KeyValuePair<TKey,TValue>>[] dic;
+        public LinkedList<KeyValuePair<TKey, TValue>>[] dic;
 
-        public Dictinary()
+        public MyDictionary()
         {
             dic = new LinkedList<KeyValuePair<TKey, TValue>>[10];
         }
@@ -74,23 +69,4 @@ namespace Dictinary
             dic[index].Remove(node);
         }
     }
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Dictinary<int,int> di = new Dictinary<int,int>();
-            di.Add(3, 5);
-            di.Add(33, 10);
-            di.Add(3, 6);
-            di.Add(4, 6);
-            di.Add(5, 7);
-            di.Add(4, 8);
-
-            var p = di.Get(33);
-            var k = di.Get(5);
-
-            di.Remove(3);
-        }
-    }
 }
-
