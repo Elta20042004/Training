@@ -8,83 +8,68 @@ namespace ACM_ICPC_Team
 {
     class Program
     {
-        //4 5
-        //10101
-        //11100
-        //11010
-        //00101
+        private static int people;
+        private static int maxTopic;
+        private static List<int> stock;
+        static void ComparisonOfTwoArrays(int[] a, int[] b)
+        {
+            int temp = 0;
 
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] == 1 || b[i] == 1)
+                {
+                    temp++;
+                }
+            }
+
+            if (temp > maxTopic)
+            {
+                maxTopic = temp;
+            }
+
+            stock.Add(temp);
+        }
+        static void Test(List<int[]> allPreople)
+        {
+            for (int i = 0; i < people; i++)
+            {
+                for (int j = i; j < people; j++)
+                {
+                    if (i != j)
+                    {
+                        ComparisonOfTwoArrays(allPreople[i], allPreople[j]);
+                    }
+                }
+            }
+        }
         private static void Main(string[] args)
         {
             string[] k = Console.ReadLine().Split(' ');
-            int chelovek = int.Parse(k[0]);
-            int temy = int.Parse(k[1]);
-            //int chelovek = 4;
-            List<string> klass = new List<string>();
-            int[] count = new int[chelovek * chelovek];
-            int komanda = 0;
-            int temp = 0;
-            for (int i = 0; i < chelovek; i++)
-            {
-                string st = Console.ReadLine();
-                //string st = "10101";
-                klass.Add(st);
-            }
-            int f;
-            int j = 0;
-            int s = 0;
-            while (j < klass.Count)
-            {
-                f = 0;
-                while (f < klass.Count)
-                {
-                    if (f != j)
-                    {
+            people = int.Parse(k[0]);          
+            maxTopic = 0;
 
-                        string one = klass[j];
-                        string two = klass[f];
-                        for (int i = 0; i < one.Length; i++)
-                        {
-                            int m = one[i] - '0';
-                            int n = two[i] - '0';
-                            if ((m == 1) && (n == 0))
-                            {
-                                temp++;
-                            }
-                            else if ((m == 0) && (n == 1))
-                            {
-                                temp++;
-                            }
-                        }
-
-                        count[s] = temp;
-                        s++;
-                        if (temp > komanda)
-                        {
-                            komanda = temp;
-                        }
-                        temp = 0;
-                      
-                    }
-                    f++;
-                }
-                j++;
+            List<int[]> allPreople = new List<int[]>();
+            stock = new List<int>();
+            for (int i = 0; i < people; i++)
+            {
+                string str = Console.ReadLine();
+                int[] num = str.Select(t => int.Parse(t.ToString())).ToArray();
+                allPreople.Add(num);
             }
 
-            int kom = 0;
-            for (int i = 0; i < count.Length; i++)
+            Test(allPreople);
+
+            int comands = 0;
+            for (int i = 0; i < stock.Count; i++)
             {
-                if (count[i] > 0)
+                if (stock[i] == maxTopic)
                 {
-                    if (count[i] == komanda)
-                    {
-                        kom++;
-                    }
+                    comands++;
                 }
             }
-
-            Console.WriteLine(komanda);
-            Console.WriteLine(kom);
+            Console.WriteLine(maxTopic);
+            Console.WriteLine(comands);
         }
     }
 }

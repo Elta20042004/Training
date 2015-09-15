@@ -27,7 +27,7 @@ namespace UKandUSPart2
            
 
            
-            var regexRez = new Regex();
+      //      var regexRez = new Regex();
         }
 
         static void Main(string[] args)
