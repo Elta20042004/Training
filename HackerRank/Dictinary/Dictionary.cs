@@ -10,12 +10,14 @@ namespace Dictinary
         {
             dic = new LinkedList<KeyValuePair<TKey, TValue>>[10];
         }
+
         public int GetIndex(TKey key)           // Index
         {
             int hashCode = key.GetHashCode();
             int index = hashCode % dic.Length;
             return index;
         }
+
         public void Add(TKey key, TValue value)
         {
             var myNode = new KeyValuePair<TKey, TValue>(key, value);

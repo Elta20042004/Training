@@ -8,31 +8,47 @@ namespace Fibonacci_Modified
 {
     class Program
     {
-        static void Main(string[] args)
+        private static int c;
+
+        static void Recursiya(int a, int b)
         {
-            string[] k = Console.ReadLine().Split(' ');
-            decimal first = int.Parse(k[0]);
-            decimal second = int.Parse(k[1]);
-            int counter = int.Parse(k[3]);
-
-
-            //decimal first = 1;
-            //decimal second = 0;
-            //int counter = 10;
-
-
-            int i = 1;
-            decimal sum = 0;
-            while (i<counter)
-            {               
-                sum= first + (second*second) ;
-                first=second;
-                second=sum;
-                i++;
+            int summa = a + b;
+            if (c == 0)
+            {
+                return;
             }
 
-            //sum= Math.Round(sum,)
-            Console.WriteLine(sum);
+            a = b;
+            b = summa;
+            c--;
+            Recursiya(a, b);
+        }
+
+
+        static void Main(string[] args)
+        {
+            //string[] k = Console.ReadLine().Split(' ');
+            //int a = int.Parse(k[0]);
+            //int b = int.Parse(k[1]);
+            //int c = int.Parse(k[3]);
+
+            int a = 0;
+            int b = 1;
+            c = 5;
+            Recursiya(a, b);
+
+
+            //int summ = 0;
+            //int counter = 0;
+            //while (summ!=c)
+            //{
+            //    summ = a + b;
+            //    a = b;
+            //    b = summ;
+            //    counter++;
+            //}
+
+
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Koni
         private static int second_Y;
         private static int m;
         private static int n;
+
         public static int Bfs(int[,] matrix, int x, int y)
         {
             List<Point> tekushij = new List<Point>();
