@@ -9,54 +9,52 @@ namespace DanyRekursiya
 {
     class Program
     {
-        static int j;
-        private static int counte = 0;
-        private static List<int> temp;
+        private static int[] numbers;
+        private static long[,] dyn;
 
-        static void Rec(int[] numbers, int summa, int i)
+        static long Rec(int summa, int index)
         {
-           
-            if (i >= numbers.Length - 1)
+            if (summa == 0)
             {
-                Console.WriteLine(string.Join(" ", temp.Select(t => numbers[t].ToString())));
-
-                var summaTemp = temp
-                    .Sum(t=>numbers[t]);
-                if (summa == summaTemp)
-                {
-                    //Console.WriteLine("Success -->" + string.Join(" ",temp.Select(t=> numbers[t].ToString())));
-                }
-                return;
+                return 1;
             }
 
-            for (int k = i+1; k < numbers.Length; k++)
+            if (summa < 0)
             {
-                temp.Add(k);
-                Rec(numbers,summa,k);
-                temp.Remove(k);
+                return 0;
             }
 
-           Rec(numbers,summa,numbers.Length);
-        }
-
-        static void Recursiya(int[] numbers, int summa, int i)
-        {
-            if (i >= numbers.Length - 1)
-            {                
-                return;
+            if (dyn[summa, index] >= 0)
+            {
+                return dyn[summa, index];
             }
 
+            long count = 0;
+            for (int k = index + 1; k < numbers.Length; k++)
+            {
+                count += Rec(summa - numbers[k], k);
+            }
 
+            dyn[summa, index] = count;
+            return count;
         }
 
         static void Main(string[] args)
         {
             //int[] k = new[] { 3,5,1,15,7,6 };
-            int[] k = new[] { 3, 5 };
-            int x = 5;
-            temp = new List<int>();
+            int[] numbers = new[] { 3, 5 };
+            int summa = 5;
 
-            Rec(k, x, -1);
+            dyn = new long[summa + 1, numbers.Length + 1];
+            for (int i = 0; i <= summa; i++)
+            {
+                for (int j = 0; j <= numbers.Length; j++)
+                {
+                    dyn[i, j] = -1;
+                }
+            }
+
+            Rec(summa, -1);
         }
     }
 }

@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CounterGame
 {
     class Program
     {
-        public static int game(ulong n, int rebenok)
+        public static int Game(ulong n, int player)
         {
             while (n > 1)
             {
@@ -23,13 +19,15 @@ namespace CounterGame
                     {
                         result = result * 2;
                     }
+
                     result = result / 2;
                 }
+
                 n = n - result;
-                rebenok++;
+                player++;
             }
 
-            return rebenok;
+            return player;
         }
 
         static void Main(string[] args)
@@ -38,9 +36,9 @@ namespace CounterGame
 
             for (int i = 0; i < t; i++)
             {
-                int rebenok = 1;
+                int player = 1;
                 ulong n = ulong.Parse(Console.ReadLine());
-                rebenok = game(n, rebenok); if (rebenok % 2 == 1)
+                player = Game(n, player); if (player % 2 == 1)
                 {
                     Console.WriteLine("Richard");
                 }
@@ -49,10 +47,6 @@ namespace CounterGame
                     Console.WriteLine("Louise");
                 }
             }
-
-
-
-
         }
     }
 }
