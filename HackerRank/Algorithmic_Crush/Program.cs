@@ -6,30 +6,21 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Algorithmic_Crush
-{//public static long[] numbers;
-    //public static void test(long startIndex, long endIndex, long summa)
-    //{          
-    //    for (var i = startIndex - 1; i <= endIndex - 1; i++)
-    //    {
-    //        numbers[i] = numbers[i] + summa;               
-    //    }          
-    //}
-
+{
     class Program
     {
-
-        public class Otrezus
+        public class Segment
         {
             public long Start, End, Value;
         }
 
-        public static List<Otrezus> mass = new List<Otrezus>();
+        private static List<Segment> _segmentList = new List<Segment>();
 
-        public static void pips(List<Otrezus> mass)
+        private static void CalculateCrush(List<Segment> mass)
         {
-            long summa = 0;
-            long maxSumma = 0;
-            SortedDictionary<long, long> endValue = new SortedDictionary<long, long>();
+            long sum = 0;
+            long maxSum = 0;
+            var endValue = new SortedDictionary<long, long>();
 
             for (int i = 0; i < mass.Count; i++)
             {
@@ -38,13 +29,13 @@ namespace Algorithmic_Crush
                     endValue.Add(mass[i].End, 0);
                 }
                 endValue[mass[i].End] += mass[i].Value;
-                summa = summa + mass[i].Value;
-                LinkedList<long> forremove = new LinkedList<long>();
+                sum = sum + mass[i].Value;
+                var forremove = new LinkedList<long>();
                 foreach (var l in endValue.Keys)
                 {
                     if (l < mass[i].Start)
                     {
-                        summa -= endValue[l];
+                        sum -= endValue[l];
                         forremove.AddLast(l);
                     }
                     else
@@ -58,20 +49,20 @@ namespace Algorithmic_Crush
                     endValue.Remove(l);
                 }
 
-                if (summa > maxSumma)
+                if (sum > maxSum)
                 {
-                    maxSumma = summa;
+                    maxSum = sum;
                 }
             }
-            Console.WriteLine(maxSumma);
+            Console.WriteLine(maxSum);
 
         }
 
-        public static void pips2(List<Otrezus> mass)
+        private static void CalculateCrush2(List<Segment> mass)
         {
             long summa = 0;
             long maxSumma = 0;
-            LinkedList<Otrezus> endValue = new LinkedList<Otrezus>();
+            var endValue = new LinkedList<Segment>();
 
             for (int i = 0; i < mass.Count; i++)
             {
@@ -80,7 +71,7 @@ namespace Algorithmic_Crush
                 var current = endValue.First.Next;
                 while (current != null)
                 {
-                    LinkedListNode<Otrezus> next= current.Next;
+                    var next= current.Next;
                     if (mass[i].Start > current.Value.End)
                     {
                         summa = summa - current.Value.Value;
@@ -94,30 +85,26 @@ namespace Algorithmic_Crush
                 {
                     maxSumma = summa;
                 }
-
             }
-            Console.WriteLine(maxSumma);
 
+            Console.WriteLine(maxSumma);
         }
 
-        public static void test(long startIndex, long endIndex, long summa)
+        private static void AddSegment(long startIndex, long endIndex, long summa)
         {
-            mass.Add(new Otrezus()
+            _segmentList.Add(new Segment()
             {
                 Start = startIndex,
                 End = endIndex,
                 Value = summa
             });
-
-
-
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            string[] k = Console.ReadLine().Split(' ');
-            long length = int.Parse(k[0]);
-            int n = int.Parse(k[1]);
+            string[] temp = Console.ReadLine().Split(' ');
+            long length = int.Parse(temp[0]);
+            int n = int.Parse(temp[1]);
 
             for (int i = 0; i < n; i++)
             {
@@ -126,17 +113,15 @@ namespace Algorithmic_Crush
                 long endIndex = long.Parse(m[1]);
                 long summa = long.Parse(m[2]);
 
-                test(startIndex, endIndex, summa);
+                AddSegment(startIndex, endIndex, summa);
             }
 
-            mass = mass.OrderBy(t => t.Start).ToList();  //otsortirovat' list po start
-            pips(mass);
-
-
+            _segmentList = _segmentList.OrderBy(t => t.Start).ToList();  //sort list by .Start
+            CalculateCrush(_segmentList);
         }
     }
 
-    internal class DescComparer : IComparer<long>
+    public class DescComparer : IComparer<long>
     {
         public int Compare(long x, long y)
         {

@@ -8,53 +8,54 @@ namespace Dejkstra
 {
     class Program
     {
-        public static int[,] Matrix;
-        public static int[] Konveer;
-        public static bool[] TrueFalse;
-        public static int n;
-        private static int start;
+        private static int[,] _matrix;
+        private static int[] _konveer;
+        private static bool[] _trueFalse;
+        private static int _n;
+        private static int _start;
 
         public static void Dejkstra()
         {
-            int counter = n;
-            int index = start;
+            int counter = _n;
+            int index = _start;
             while (counter != 1)
             {
-                //begu po stolbcu k v Matrix
-                for (int i = 1; i <= n; i++)
+                //run over column k v Matrix
+                for (int i = 1; i <= _n; i++)
                 {
-                    if (!TrueFalse[i]
-                        && Matrix[index, i] != 0
-                        && Konveer[index] + Matrix[index, i] < Konveer[i])
+                    if (!_trueFalse[i]
+                        && _matrix[index, i] != 0
+                        && _konveer[index] + _matrix[index, i] < _konveer[i])
                     {
-                        Konveer[i] = Konveer[index] + Matrix[index, i];
+                        _konveer[i] = _konveer[index] + _matrix[index, i];
                     }
                 }
 
                 int maxValue = int.MaxValue;
                 index = 0;
-                for (int i = 1; i <= Konveer.Length - 1; i++)
+                for (int i = 1; i <= _konveer.Length - 1; i++)
                 {
-                    if ((Konveer[i] > 0) && (!TrueFalse[i]))
+                    if ((_konveer[i] > 0) && (!_trueFalse[i]))
                     {
-                        if (Konveer[i] < maxValue)
+                        if (_konveer[i] < maxValue)
                         {
-                            maxValue = Konveer[i];
+                            maxValue = _konveer[i];
                             index = i;
                         }
                     }
                 }
-                TrueFalse[index] = true;
+                _trueFalse[index] = true;
                 counter--;
             }
-            //vyvod na ekran
-            for (int i = 1; i <= Konveer.Length - 1; i++)
+
+            //print to console
+            for (int i = 1; i <= _konveer.Length - 1; i++)
             {
-                if (Konveer[i] > 0 && Konveer[i] != int.MaxValue)
+                if (_konveer[i] > 0 && _konveer[i] != int.MaxValue)
                 {
-                    Console.Write("{0} ", Konveer[i]);
+                    Console.Write("{0} ", _konveer[i]);
                 }
-                else if (Konveer[i] == int.MaxValue)
+                else if (_konveer[i] == int.MaxValue)
                 {
                     Console.Write("-1 ");
                 }
@@ -65,12 +66,12 @@ namespace Dejkstra
 
         public static void Podgotovka(int start)
         {
-            for (int i = 1; i <= Konveer.Length - 1; i++)
+            for (int i = 1; i <= _konveer.Length - 1; i++)
             {
-                Konveer[i] = int.MaxValue;
+                _konveer[i] = int.MaxValue;
             }
-            Konveer[start] = 0;
-            TrueFalse[start] = true;
+            _konveer[start] = 0;
+            _trueFalse[start] = true;
             Dejkstra();
         }
 
@@ -80,38 +81,38 @@ namespace Dejkstra
             for (int i = 0; i < t; i++)
             {
                 string[] length = Console.ReadLine().Split(' ');
-                n = int.Parse(length[0]);
+                _n = int.Parse(length[0]);
                 int m = int.Parse(length[1]);
 
-                Matrix = new int[n + 1, n + 1];
+                _matrix = new int[_n + 1, _n + 1];
                 for (int j = 0; j < m; j++)
                 {
                     string[] shura = Console.ReadLine().Split(' ');
                     int x = int.Parse(shura[0]);
                     int y = int.Parse(shura[1]);                  
 
-                    if (Matrix[x, y] > 0)
+                    if (_matrix[x, y] > 0)
                     {
-                        if (Matrix[x, y] > 0)
+                        if (_matrix[x, y] > 0)
                         {
-                            Matrix[x, y] = 6;
-                            Matrix[y, x] = 6;
+                            _matrix[x, y] = 6;
+                            _matrix[y, x] = 6;
                         }
                     }
-                    else if (Matrix[x, y] == 0)
+                    else if (_matrix[x, y] == 0)
                     {
-                        Matrix[x, y] = 6;
-                        Matrix[y, x] = 6;
+                        _matrix[x, y] = 6;
+                        _matrix[y, x] = 6;
                     }
 
                 }
 
                 string startString = Console.ReadLine();
-                start = int.Parse(startString);
-                Konveer = new int[n + 1];
-                TrueFalse = new bool[n + 1];
+                _start = int.Parse(startString);
+                _konveer = new int[_n + 1];
+                _trueFalse = new bool[_n + 1];
 
-                Podgotovka(start);
+                Podgotovka(_start);
             }
 
 

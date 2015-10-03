@@ -9,7 +9,7 @@ namespace Flowers
 {
     class Program
     {
-        public static void sale(int[] numbers, int friends)
+        public static void Sale(int[] numbers, int friends)
         {
             int summa = 0;
             int i = numbers.Length - 1;
@@ -23,6 +23,7 @@ namespace Flowers
                     i--;
                     counter--;
                 }
+
                 j++;
                 counter = friends;
             }
@@ -38,7 +39,7 @@ namespace Flowers
             m = Console.ReadLine().Split(' ');
             int[] numbers = m.Select(ch => int.Parse(ch.ToString())).ToArray();
             Array.Sort(numbers);
-            sale(numbers, friends);
+            Sale(numbers, friends);
         }
     }
 }
