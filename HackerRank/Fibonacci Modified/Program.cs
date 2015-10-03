@@ -8,22 +8,21 @@ namespace Fibonacci_Modified
 {
     class Program
     {
-        private static int c;
+        private static int _step;
 
-        static void Recursiya(int a, int b)
+        static void Rec(int a, int b)
         {
             int summa = a + b;
-            if (c == 0)
+            if (_step == 0)
             {
                 return;
             }
 
             a = b;
             b = summa;
-            c--;
-            Recursiya(a, b);
+            _step--;
+            Rec(a, b);
         }
-
 
         static void Main(string[] args)
         {
@@ -34,8 +33,8 @@ namespace Fibonacci_Modified
 
             int a = 0;
             int b = 1;
-            c = 5;
-            Recursiya(a, b);
+            _step = 5;
+            Rec(a, b);
 
 
             //int summ = 0;
@@ -47,8 +46,6 @@ namespace Fibonacci_Modified
             //    b = summ;
             //    counter++;
             //}
-
-
         }
     }
 }

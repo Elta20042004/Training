@@ -8,53 +8,54 @@ namespace Dejkstra
 {
     class Program
     {
-        public static int[,] Matrix;
-        public static int[] Konveer;
-        public static bool[] TrueFalse;
-        public static int n;
-        private static int start;
+        private static int[,] _matrix;
+        private static int[] _bestCurrent;
+        private static bool[] _trueFalse;
+        private static int _n;
+        private static int _start;
 
         public static void Dejkstra()
         {
-            int counter = n;
-            int vershina = start;
+            int counter = _n;
+            int node = _start;
             while (counter != 1)
             {
-                //begu po stolbcu k v Matrix
-                for (int i = 1; i <= n; i++)
+                //run over column k v Matrix
+                for (int i = 1; i <= _n; i++)
                 {
-                    if (!TrueFalse[i] 
-                        && Matrix[vershina, i] != 0
-                        && Konveer[vershina] + Matrix[vershina, i] < Konveer[i])
+                    if (!_trueFalse[i] 
+                        && _matrix[node, i] != 0
+                        && _bestCurrent[node] + _matrix[node, i] < _bestCurrent[i])
                     {
-                        Konveer[i] = Konveer[vershina] + Matrix[vershina, i];
+                        _bestCurrent[i] = _bestCurrent[node] + _matrix[node, i];
                     }
                 }
 
                 int maxValue = int.MaxValue;
-                vershina = 0;
-                for (int i = 1; i <= Konveer.Length - 1; i++)
+                node = 0;
+                for (int i = 1; i <= _bestCurrent.Length - 1; i++)
                 {
-                    if ((Konveer[i] > 0) && (!TrueFalse[i]))
+                    if ((_bestCurrent[i] > 0) && (!_trueFalse[i]))
                     {
-                        if (Konveer[i] < maxValue)
+                        if (_bestCurrent[i] < maxValue)
                         {
-                            maxValue = Konveer[i];
-                            vershina = i;
+                            maxValue = _bestCurrent[i];
+                            node = i;
                         }
                     }
                 }
-                TrueFalse[vershina] = true;
+                _trueFalse[node] = true;
                 counter--;
             }
-            //vyvod na ekran
-            for (int i = 1; i <= Konveer.Length - 1; i++)
+
+            //print to console
+            for (int i = 1; i <= _bestCurrent.Length - 1; i++)
             {
-                if (Konveer[i] > 0 && Konveer[i] != int.MaxValue)
+                if (_bestCurrent[i] > 0 && _bestCurrent[i] != int.MaxValue)
                 {
-                    Console.Write("{0} ", Konveer[i]);
+                    Console.Write("{0} ", _bestCurrent[i]);
                 }
-                else if (Konveer[i] == int.MaxValue)
+                else if (_bestCurrent[i] == int.MaxValue)
                 {
                     Console.Write("-1 ");
                 }
@@ -63,14 +64,14 @@ namespace Dejkstra
             Console.WriteLine();
         }
 
-        public static void Podgotovka(int start)
+        public static void Prepare(int start)
         {
-            for (int i = 1; i <= Konveer.Length - 1; i++)
+            for (int i = 1; i <= _bestCurrent.Length - 1; i++)
             {
-                Konveer[i] = int.MaxValue;
+                _bestCurrent[i] = int.MaxValue;
             }
-            Konveer[start] = 0;
-            TrueFalse[start] = true;
+            _bestCurrent[start] = 0;
+            _trueFalse[start] = true;
             Dejkstra();
         }
 
@@ -80,10 +81,10 @@ namespace Dejkstra
             for (int i = 0; i < t; i++)
             {
                 string[] length = Console.ReadLine().Split(' ');
-                n = int.Parse(length[0]);
+                _n = int.Parse(length[0]);
                 int m = int.Parse(length[1]);
 
-                Matrix = new int[n + 1, n + 1];
+                _matrix = new int[_n + 1, _n + 1];
                 for (int j = 0; j < m; j++)
                 {
                     string[] shura = Console.ReadLine().Split(' ');
@@ -91,31 +92,29 @@ namespace Dejkstra
                     int y = int.Parse(shura[1]);
                     int r = int.Parse(shura[2]);
 
-                    if (Matrix[x, y] > 0)
+                    if (_matrix[x, y] > 0)
                     {
-                        if (Matrix[x, y] > r)
+                        if (_matrix[x, y] > r)
                         {
-                            Matrix[x, y] = r;
-                            Matrix[y, x] = r;
+                            _matrix[x, y] = r;
+                            _matrix[y, x] = r;
                         }
                     }
-                    else if (Matrix[x, y] == 0)
+                    else if (_matrix[x, y] == 0)
                     {
-                        Matrix[x, y] = r;
-                        Matrix[y, x] = r;
+                        _matrix[x, y] = r;
+                        _matrix[y, x] = r;
                     }
 
                 }
 
                 string startString = Console.ReadLine();
-                start = int.Parse(startString);
-                Konveer = new int[n + 1];
-                TrueFalse = new bool[n + 1];
+                _start = int.Parse(startString);
+                _bestCurrent = new int[_n + 1];
+                _trueFalse = new bool[_n + 1];
 
-                Podgotovka(start);
+                Prepare(_start);
             }
-
-
         }
     }
 }

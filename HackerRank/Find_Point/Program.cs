@@ -8,7 +8,7 @@ namespace Find_Point
 {
     class Program
     {
-        public static void test(int[] numbers)
+        public static void Test(int[] numbers)
         {
             int x;
             int y;
@@ -48,7 +48,7 @@ namespace Find_Point
             {
                 string[] k = Console.ReadLine().Split(' ');
                 int[] numbers = k.Select(c => int.Parse(c.ToString())).ToArray();
-                test(numbers);
+                Test(numbers);
             }
         }
     }

@@ -229,7 +229,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Counting Sort 1", "Counting
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poisk v Glubinu", "Poisk v Glubinu\Poisk v Glubinu.csproj", "{75A73DE6-2610-4771-B5D7-8529CBC7539A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dinamming Programming", "Dinamming Programming", "{1ABFA8C5-EB04-4F49-A4E7-681C4A6BE005}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dynamic Programming", "Dynamic Programming", "{1ABFA8C5-EB04-4F49-A4E7-681C4A6BE005}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fibonacci Modified", "Fibonacci Modified\Fibonacci Modified.csproj", "{F84F4BF0-B7B4-4E08-ADA5-ECB0022504DE}"
 EndProject

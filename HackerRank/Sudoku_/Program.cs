@@ -1,99 +1,116 @@
 ﻿using System;
+
 class Solution
 {
-    static int G(int i, int j)
-    { return (3 * (i / 3)) + (j / 3); }
-    static int[,] g; static bool[,] h, v, k; static bool ok;
+    static int[,] _matrix;
+    static bool[,] _height, _width, _smallSquare;
+    static bool _done;
+
     static void s()
     {
-        h = new bool[9, 10]; v = new bool[9, 10]; k = new bool[9, 10];
+        _height = new bool[9, 10];
+        _width = new bool[9, 10];
+        _smallSquare = new bool[9, 10];
         for (int i = 0; i < 9; i++)
         {
             for (int j = 0; j < 9; j++)
             {
-                if (g[i, j] > 0)
+                if (_matrix[i, j] > 0)
                 {
-                    int pi = g[i, j];
-                    h[i, pi] = true;
-                    v[j, pi] = true;
+                    int pi = _matrix[i, j];
+                    _height[i, pi] = true;
+                    _width[j, pi] = true;
                     int index = G(i, j);
-                    k[index, pi] = true;
+                    _smallSquare[index, pi] = true;
                 }
             }
         }
+
         Rec(0, 0);
     }
+
+    static int G(int i, int j)
+    {
+        return (3 * (i / 3)) + (j / 3);
+    }
+
     static void Rec(int i, int j)
     {
-        if (ok || i == -1)
+        if (_done || i == -1)
         {
-            if (!ok)
+            if (!_done)
             {
-                for (int m = 0; m < 9; m++)
-                {
-                    Console.WriteLine();
-                    for (int n = 0; n < 9; n++)
-                    {
-                        Console.Write("{0} ", g[m, n]);
-                    }
-                }
+                PrintResult();
             }
-            ok = true;
+            _done = true;
             return;
+        }
+        int prevI = i;
+        int prevJ = j;
+        Increment(ref i, ref j);
+        if (_matrix[i, j] != 0)
+        {
+            Rec(i, j);
         }
         else
         {
-            int v;
-            int s;
-            N(i, j, out v, out s);
-            if (g[i, j] == 0)
+            for (int t = 1; t < 10; t++)
             {
-                for (int t = 1; t < 10; t++)
+                int p = G(prevI, prevJ);
+                if ((_height[prevI, t] == false)
+                    && (_width[prevJ, t] == false)
+                    && (_smallSquare[p, t] == false))
                 {
-                    int p = G(i, j);
-                    if ((h[i, t] == false)
-                        && (Solution.v[j, t] == false)
-                        && (k[p, t] == false))
-                    {
-                        g[i, j] = t;
-                        h[i, t] = true;
-                        Solution.v[j, t] = true;
-                        k[p, t] = true;
-                        Rec(v, s);
-                        g[i, j] = 0;
-                        h[i, t] = false;
-                        Solution.v[j, t] = false;
-                        k[p, t] = false;
-                    }
+                    _matrix[prevI, prevJ] = t;
+                    _height[prevI, t] = true;
+                    _width[prevJ, t] = true;
+                    _smallSquare[p, t] = true;
+                    Rec(i, j);
+                    _matrix[prevI, prevJ] = 0;
+                    _height[prevI, t] = false;
+                    _width[prevJ, t] = false;
+                    _smallSquare[p, t] = false;
                 }
             }
-            else
-            { Rec(v, s); }
         }
     }
-    static void N(int i, int j, out int e, out int c)
+
+    private static void PrintResult()
     {
-        c = -1; e = -1;
+        for (int m = 0; m < 9; m++)
+        {
+            Console.WriteLine();
+            for (int n = 0; n < 9; n++)
+            {
+                Console.Write("{0} ", _matrix[m, n]);
+            }
+        }
+    }
+
+    static void Increment(ref int i, ref int j)
+    {
         if (j < 8)
         {
             j++;
-            c = j;
-            e = i;
         }
-        else if ((j == 8) && (i < 8))
+        else if (j == 8 && i < 8)
         {
             j = 0;
             i++;
-            c = j;
-            e = i;
+        }
+        else
+        {
+            i = -1;
+            j = -1;
         }
     }
-    static void Main(String[] args)
+
+    static void Main(string[] args)
     {
         int n = int.Parse(Console.ReadLine());
-        g = new int[9, 9];
-        String l;
-        String[] t;
+        _matrix = new int[9, 9];
+        string l;
+        string[] t;
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < 9; j++)
@@ -102,9 +119,10 @@ class Solution
                 t = l.Split(' ');
                 for (int k = 0; k < 9; k++)
                 {
-                    g[j, k] = int.Parse(t[k]);
+                    _matrix[j, k] = int.Parse(t[k]);
                 }
             }
+
             s();
         }
     }
