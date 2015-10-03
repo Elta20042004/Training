@@ -9,18 +9,19 @@ namespace RecursiyaSumma
 {
     class Program
     {
-        static int[] Arr;
-        static int counter = 0;
-        static int n;
-        static int v = 1;
-        static ulong[,] dyn;
+        static int[] _arr;
+        static int _counter = 0;
+        static int _n;
+        static int _v = 1;
+        static ulong[,] _dyn;
 
         static void See(int i)
         {
             for (int j = 0; j <= i; j++)
             {
-                Console.Write(Arr[j]);
+                Console.Write(_arr[j]);
             }
+
             Console.WriteLine();
         }
 
@@ -31,25 +32,25 @@ namespace RecursiyaSumma
                 return 1;
             }
 
-            if (dyn[left, last] != ulong.MaxValue)
+            if (_dyn[left, last] != ulong.MaxValue)
             {
-                return dyn[left, last];
+                return _dyn[left, last];
             }
 
-            dyn[left, last] = 0;
+            _dyn[left, last] = 0;
             for (int i = last; i <= left; i++)
             {
-                dyn[left, last] += Rec3(left - i, i);
+                _dyn[left, last] += Rec3(left - i, i);
             }
 
-            return dyn[left, last];
+            return _dyn[left, last];
         }
 
         static void Rec2(int left, int last)
         {
             if (left == 0)
             {
-                counter++;
+                _counter++;
                 return;
             }
 
@@ -59,75 +60,73 @@ namespace RecursiyaSumma
             }
         }
 
-
         static void Rec(int i)
         {
-            if (i == n)
+            if (i == _n)
             {
                 return;
             }
             else
             {
 
-                int pi = v;
+                int pi = _v;
 
-                for (int f = pi; f <= n; f++)
+                for (int f = pi; f <= _n; f++)
                 {
-                    Arr[i] = f;
-                    v = f;
+                    _arr[i] = f;
+                    _v = f;
                     int summ = 0;
                     for (int k = 0; k <= i; k++)
                     {
-                        summ = summ + Arr[k];
+                        summ = summ + _arr[k];
                     }
 
-                    if (summ == n)
+                    if (summ == _n)
                     {
-                        counter++;
+                        _counter++;
                         // See(i);
                     }
 
                     Rec(i + 1);
                 }
             }
-
         }
 
         static void Main(string[] args)
         {
-            n = 1000;
-            Arr = new int[n];
-            for (int i = 0; i < Arr.Length; i++)
+            _n = 1000;
+            _arr = new int[_n];
+            for (int i = 0; i < _arr.Length; i++)
             {
-                Arr[i] = 0;
+                _arr[i] = 0;
             }
 
             Stopwatch s = new Stopwatch();
             s.Start();
             //Rec(0);
-            Console.WriteLine(counter);
+            Console.WriteLine(_counter);
             Console.WriteLine(s.Elapsed);
             Console.WriteLine();
 
             s.Reset();
             s.Start();
-            counter = 0;
+            _counter = 0;
             //Rec2(n, 1);
-            Console.WriteLine(counter);
+            Console.WriteLine(_counter);
             Console.WriteLine(s.Elapsed);
 
             s.Reset();
             s.Start();
-            dyn = new ulong[n + 1, n + 1];
-            counter = 0;
-            for (int i = 0; i <= n; i++)
+            _dyn = new ulong[_n + 1, _n + 1];
+            _counter = 0;
+            for (int i = 0; i <= _n; i++)
             {
-                for (int j = 0; j <= n; j++)
+                for (int j = 0; j <= _n; j++)
                 {
-                    dyn[i, j] = ulong.MaxValue;
+                    _dyn[i, j] = ulong.MaxValue;
                 }
             }
-            Console.WriteLine(Rec3(n, 1));
+            Console.WriteLine(Rec3(_n, 1));
             Console.WriteLine(s.Elapsed);
         }
     }

@@ -9,8 +9,8 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        private const string _chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        private static readonly Random _rng = new Random();
+        private const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private static readonly Random Random = new Random();
 
         private static string RandomString(int size)
         {
@@ -18,7 +18,7 @@ namespace ConsoleApplication1
 
             for (int i = 0; i < size; i++)
             {
-                buffer[i] = _chars[_rng.Next(_chars.Length)];
+                buffer[i] = Chars[Random.Next(Chars.Length)];
             }
             return new string(buffer);
         }
@@ -26,13 +26,13 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             int N = 50000;
-            List<string> str = new List<string>();
+            var str = new List<string>();
             for (int i = 0; i < 10000; i++)
             {
                 str.Add(RandomString(20));
             }
-            Random r =new Random();
 
+            Random r =new Random();
             using (var sw = new StreamWriter("d:\\input.txt",false))
             {
                 sw.WriteLine(N);
