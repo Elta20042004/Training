@@ -12,8 +12,7 @@ namespace Trees
             var tree = new Tree<int, int> {{10, 1}, {14, 1}, {7, 1}, {16, 1}, {12, 1}, {13, 1}, {11, 1}};
 
 
-           // tree.Rec();
-
+            // tree.Rec();
             //tree.Remove(12);
             //tree.Remove(16);
             //tree.Remove(13);
