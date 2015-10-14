@@ -66,7 +66,21 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="lib\bootstrap-3.3.5-dist\css\bootstrap-theme.css" />
+    <Content Include="lib\bootstrap-3.3.5-dist\css\bootstrap-theme.min.css" />
+    <Content Include="lib\bootstrap-3.3.5-dist\css\bootstrap.css" />
+    <Content Include="lib\bootstrap-3.3.5-dist\css\bootstrap.min.css" />
+    <Content Include="lib\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="lib\bootstrap-3.3.5-dist\js\bootstrap.js" />
+    <Content Include="lib\bootstrap-3.3.5-dist\js\bootstrap.min.js" />
+    <Content Include="lib\bootstrap-3.3.5-dist\js\npm.js" />
     <Content Include="packages.config" />
+    <Content Include="lib\bootstrap-3.3.5-dist\css\bootstrap-theme.css.map" />
+    <Content Include="lib\bootstrap-3.3.5-dist\css\bootstrap.css.map" />
+    <Content Include="lib\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="lib\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="lib\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="lib\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
