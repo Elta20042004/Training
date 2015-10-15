@@ -36,6 +36,8 @@
             <asp:Button ID="zero" runat="server" Text="0" OnClick="zero_click" />
             <asp:Button ID="fraction" runat="server" Text="." />
             <asp:Button ID="result" runat="server" Text="=" OnClick="result_click"/>
+            
+            
 
         </div>
     </form>
