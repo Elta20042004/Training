@@ -9,17 +9,15 @@ namespace WebApplication3
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        private List<int> oneNumbers;
-
         public List<int> OneNumber
         {
             get
             {
-                return List<int> oneNumber;
+                return (List<int>)ViewState["OneNumber"];
             }
             set
             {
-                ViewState["test"] = value;
+                ViewState["OneNumber"] = value;
             }
         }
         
