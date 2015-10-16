@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="WebApplication3.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="LongCalculator.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -9,13 +9,15 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            
 
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+
             <br>
             <asp:Button ID="CE" runat="server" Text="CE" />
             <asp:Button ID="C" runat="server" Text="C" OnClick="C_click"/>
-            <asp:Button ID="delete" runat="server" Text="DEL" />
-            <asp:Button ID="division" runat="server" Text="/" OnClick="division_click"/>
+            <asp:Button ID="delete" runat="server" Text="DEL" />          
             <br>
             <asp:Button ID="seven" runat="server" Text="7" OnClick="seven_click" />
             <asp:Button ID="eight" runat="server" Text="8" OnClick="eight_click" />

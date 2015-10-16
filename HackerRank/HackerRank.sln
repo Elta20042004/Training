@@ -321,7 +321,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Calc", "Calc", "{5E564252-0A8F-4093-93F7-4C25A0C6C2B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication3", "WebApplication3\WebApplication3.csproj", "{0DD3B1FB-FECF-4CE9-B025-5589CA715838}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongCalculator", "LongCalculator\LongCalculator.csproj", "{0DD3B1FB-FECF-4CE9-B025-5589CA715838}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
