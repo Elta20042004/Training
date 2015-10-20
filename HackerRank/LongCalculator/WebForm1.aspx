@@ -10,7 +10,6 @@
     <form id="form1" runat="server">
         <div>
             
-
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
             <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
 
@@ -37,10 +36,8 @@
             <asp:Button ID="negatively" runat="server" Text="+/-" />
             <asp:Button ID="zero" runat="server" Text="0" OnClick="zero_click" />
             <asp:Button ID="fraction" runat="server" Text="." />
-            <asp:Button ID="result" runat="server" Text="=" OnClick="result_click"/>
+            <asp:Button ID="result" runat="server" Text="=" OnClick="result_click"/>            
             
-            
-
         </div>
     </form>
 </body>
