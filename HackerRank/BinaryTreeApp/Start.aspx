@@ -15,16 +15,24 @@
     <script src="Js/bst.js"></script>
 </head>
 <body>
-        <label for="currency">Key:</label>
-        <input id="currency" type="number" min="0" max="100" style="width: 100%;" />
+        <label for="currency" class=".label">Key:</label>
+        <input id="currency" type="number" min="-1000" max="1000" />
 
         <button id="textButton_Add" class ="button" >Add new root</button>
         <button id="textButton_Remove" class ="button">Remove root</button>
+        <label for="randomNumbers" class=".label">Insert random numbers:</label>
+        <input id="randomNumbers" type="number" min="1" max="1024" />
 
+        <button id="textButton_Random" class ="button" >Add</button>
+        <button id="textButton_Refresh" class ="button">Refresh</button>
         <script>
             $("#textButton_Add").click(addKeyEvent);
-            $("#textButton_Remove").click(removeKey);
+            $("#textButton_Remove").click(removeKeyEvent);
+            $("#textButton_Random").click(randomsEvent);
+            $("#textButton_Refresh").click(refreshEvent);
             $(document).ready(documentReady);
+            
+
         </script>
 
         <div id="example">
@@ -35,6 +43,8 @@
             </script>
 
         </div>
+    
+
 
 </body>
 </html>

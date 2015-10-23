@@ -1,5 +1,5 @@
 ﻿function documentReady() {
-    $("#currency").kendoNumericTextBox({});
+    $(".label").kendoNumericTextBox({});
 
     $(".button").kendoButton();
 
@@ -8,23 +8,38 @@
 
 var bst = { name: null, items: [{}, {}] };
 function addKeyEvent() {
-     //alert("Handler for .click() called.");
-    // get bst variable, get key from textbox
     var key = parseInt($('#currency').val(), 10);
     addKey(key, bst);
-    //var bst2 = { name: 7, items: [{}, {}] };
-     createDiagram();
+    createDiagram();
 };
+function refreshEvent () {
+    createDiagram();
+}
 
-function removeKey() {
-    alert("Handler for .click() called.");
-    // get bst variable, get key from textbox
-    var key = input.value;
+function removeKeyEvent() {
+    var key = parseInt($('#currency').val(), 10);
     removeKey(key, bst);
-    // bst to gui
-};
-function createDiagram2()
+    createDiagram();
+}
+
+function randomsEvent()
 {
+    var count = parseInt($('#randomNumbers').val(), 10);
+    var hash = {};
+    while (count > 0) {
+        var newK = Math.floor((Math.random() * 200) + 1);
+        if (!(newK in hash)) {
+            addKey(newK, bst);
+
+            hash[newK]= true;
+            count--;
+        }
+    }
+
+    createDiagram();
+}
+
+function createDiagram2() {
     var dataSource = new kendo.data.HierarchicalDataSource({
         data: [bst]
     });
@@ -47,9 +62,9 @@ function createDiagram() {
     $("#diagram").kendoDiagram({
         dataSource: [bst],
         schema: {
-                model: {
-                    children: "items"
-                }
+            model: {
+                children: "items"
+            }
         }
         ,
         layout: {
@@ -107,7 +122,7 @@ function visualTemplate(options) {
 }
 
 function diagramNodes() {
-   var root = { name: 10, items: [{ name: 3, items: [{ name: 0 }] }, { name: 15, items: [{ name: 11 }, { name: 20 }] }] };
+    var root = { name: 10, items: [{ name: 3, items: [{ name: 0 }] }, { name: 15, items: [{ name: 11 }, { name: 20 }] }] };
     return [root];
-  
+
 }
