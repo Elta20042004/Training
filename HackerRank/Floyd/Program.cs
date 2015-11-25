@@ -17,14 +17,17 @@ namespace Special_Subtree
         private static int startIndex;
         private static int endIndex;
         private static int t;
-
+        private static Dictionary<int,int> dic; 
         private static int summ;
         public static void Dejkstra()
         {
-            int counter = _n;
+            t = 0;
             int node = startIndex;
             while (t == 0)
             {
+
+                
+
                 for (int i = 1; i <= _n; i++)
                 {
                     if (!_trueFalse[i]
@@ -34,23 +37,32 @@ namespace Special_Subtree
                     {
                         _bestCurrent[i] = _bestCurrent[node] + _matrix[node, i];
 
-
-                        if (_bestCurrent[startIndex] > 0)
-                        {
-                            t = 1;
-                            return;
-                        }
                     }
+
+                    
                 }
 
-                for (int i = 0; i < _bestCurrent.Length; i++)
+
+                for (int i = 1; i < _bestCurrent.Length; i++)
                 {
-                    if (!_trueFalse[i])
+                    if ((_bestCurrent[i]!=int.MaxValue) && (!_trueFalse[i]))
                     {
                         _trueFalse[i] = true;
                         node = i;
+                        dic.Add(node,1);
+                        break;
                     }
+                        
                 }
+
+              
+
+                if (_trueFalse[endIndex] == true)
+                {
+                    t = 1;
+                    summ = _bestCurrent[endIndex];
+                }
+               
 
 
             }
@@ -66,7 +78,8 @@ namespace Special_Subtree
                 _bestCurrent[i] = int.MaxValue;
             }
             _bestCurrent[startIndex] = 0;
-
+            dic = new Dictionary<int, int>();
+            dic.Add(startIndex,1);
             _trueFalse[startIndex] = true;
 
             Dejkstra();
@@ -110,7 +123,7 @@ namespace Special_Subtree
                 _trueFalse = new bool[_n + 1];
 
                 Prepare();
-                Console.WriteLine(summ);
+  
             }
         }
         //70

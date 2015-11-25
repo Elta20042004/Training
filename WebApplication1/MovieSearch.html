@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="lib/jquery-1.11.3.js"></script>
+    <script src="js/MovieApi.js"></script>
+    <link href="Css/CSS.css" rel="stylesheet" />
+    <link href="lib/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h4>Search :</h4>
+    <input class="target" type="text" />
+
+    <script type="text/javascript">
+
+        $('.target').on('input', function (e) {
+            var bla = $('.target').val();
+            Search(bla);
+        });
+
+    </script>
+
+    <!--<div class="Global"> </div>-->
+
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+    </div>
+
+    <div id="template" class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne" aria-expanded="false">
+                    <div class="Title"> </div>
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <div class="Global"> </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

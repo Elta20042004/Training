@@ -11,7 +11,7 @@ namespace RimskieCifry
     {
         static void Main(string[] args)
         {
-            string p = "XCVIII";
+            string p = "DCXXI";
 
             Dictionary<char, int> znachenie = new Dictionary<char, int>();
             znachenie.Add('I', 1);
@@ -19,6 +19,7 @@ namespace RimskieCifry
             znachenie.Add('X', 10);
             znachenie.Add('L', 50);
             znachenie.Add('C', 100);
+
             int[] l = new int[p.Length];
             for (int i = 0; i < p.Length; i++)
             {
@@ -69,9 +70,9 @@ namespace RimskieCifry
             Console.WriteLine(summa);
         }
 
-        static void Main2(string[] args)
+        static void Main1(string[] args)
         {
-            string p = "XCIX";
+            string p = "DCXXI";
 
             Dictionary<char, int> znachenie = new Dictionary<char, int>();
             znachenie.Add('I', 1);
