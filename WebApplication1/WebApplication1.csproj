@@ -74,6 +74,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Chart\.gitignore" />
+    <Content Include="Chart\Chart.js" />
+    <Content Include="Chart\Chart.min.js" />
+    <Content Include="Chart\gulpfile.js" />
     <Content Include="Data.aspx" />
     <Content Include="One_Form.aspx" />
     <Content Include="packages.config" />
@@ -86,6 +90,14 @@
     <Content Include="Three_Form.aspx" />
     <Content Include="Two_Form.aspx" />
     <Content Include="Global_Form.aspx" />
+    <Content Include="WebUserControl1.ascx" />
+    <Content Include="Chart\.travis.yml" />
+    <Content Include="Chart\bower.json" />
+    <Content Include="Chart\composer.json" />
+    <Content Include="Chart\CONTRIBUTING.md" />
+    <Content Include="Chart\LICENSE.md" />
+    <Content Include="Chart\package.json" />
+    <Content Include="Chart\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -109,8 +121,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Books.cs" />
+    <Compile Include="Boooks.cs" />
     <Compile Include="Data.aspx.cs">
       <DependentUpon>Data.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Data.aspx.designer.cs">
       <DependentUpon>Data.aspx</DependentUpon>
@@ -145,6 +160,13 @@
       <DependentUpon>Global_Form.aspx</DependentUpon>
     </Compile>
     <Compile Include="Authors.cs" />
+    <Compile Include="WebUserControl1.ascx.cs">
+      <DependentUpon>WebUserControl1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControl1.ascx.designer.cs">
+      <DependentUpon>WebUserControl1.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
