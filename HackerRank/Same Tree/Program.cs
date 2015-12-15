@@ -8,19 +8,34 @@ namespace Same_Tree
 {
     public class TreeNode
     {
-      public int val;
-      public TreeNode left;
-      public TreeNode right;
-      public TreeNode(int x) { val = x; }
-  }
+        public int val;
+        public TreeNode left;
+        public TreeNode right;
+        public TreeNode(int x) { val = x; }
+    }
 
     class Program
     {
         public static bool IsSameTree(TreeNode p, TreeNode q)
         {
 
+            if (p == null && q == null)
+            {
+                return true;
+            }
+            else if (p == null || q == null)
+            {
+                return false;
+            }
+            else if (p.val != q.val)
+            {
+                return false;
+            }
 
-            return false;
+            bool ok = IsSameTree(p.right, q.right)
+                && IsSameTree(p.left, q.left);
+
+            return ok;
         }
 
         static void Main(string[] args)

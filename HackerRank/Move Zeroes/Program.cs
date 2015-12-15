@@ -10,20 +10,24 @@ namespace Move_Zeroes
     {
         public static void MoveZeroes(int[] nums)
         {
-            int k = 0;
             int i = 0;
-            while (k < nums.Length)
+            int j = 0;
+
+            while (i<nums.Length)
             {
-                if (nums[k] > 0)
+                if (nums[i] > 0 || nums[i] < 0)
                 {
-                    nums[i] = nums[k];
+                    nums[j] = nums[i];
+                    j++;
                 }
-
-
-
+                i++;
             }
 
-
+            while (j<nums.Length)
+            {
+                nums[j] = 0;
+                j++;
+            }
         }
 
         static void Main(string[] args)
