@@ -23,6 +23,7 @@ namespace Serialize_and_Deserialize_Binary_Tree
                 sklad.Add("n");
                 return;
             }
+            sklad.Add("t");
             sklad.Add(root.val.ToString());
             Rec(root.left);
             Rec(root.right);
@@ -33,11 +34,15 @@ namespace Serialize_and_Deserialize_Binary_Tree
 
         public static string serialize(TreeNode root)
         {
+            if (root == null)
+            {
+                return "";
+            }
             sklad = new List<string>();
             Rec(root);
             StringBuilder builder = new StringBuilder();
 
-            for (int i = 0; i < sklad.Count; i++)
+            for (int i = 1; i < sklad.Count; i++)
             {
                 builder.Append(sklad[i]);
             }
@@ -47,36 +52,47 @@ namespace Serialize_and_Deserialize_Binary_Tree
         // Decodes your encoded data to tree.
         public static TreeNode deserialize(string data)
         {
-        
+            if (data.Length == 0)
+            {
+                return null;
+            }
             i = 0;
             global = data;
-         
-            AddToTree();
+             AddToTree();
             return tn;
         }
 
         public static int i;
         public static string global;
-        public static TreeNode tn;
+        public static TreeNode head;
 
         public static TreeNode AddToTree()
-        {        
+        {
+          
             if (i >= global.Length - 1)
             {
                 return null;
             }
 
-            if (global[i] == 'n')
+            if (global[i] == 'n' || global[i] == 't')
             {
                 i++;
                 return null;
             }
 
-            tn = new TreeNode((int)global[i] - '0');
+            string k = "";
+
+            while (global[i]!='t' && global[i] != 'n')
+            {
+                k = k + global[i];
+                i++;
+            }
+
+            head = new TreeNode(int.Parse(k));   
             i++;
-            tn.left = AddToTree();
-            tn.right = AddToTree();
-            return tn;
+            head.left = AddToTree();
+            head.right = AddToTree();
+            return head;
         }
 
 
